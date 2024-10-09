@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Universal Box-Sizing */
+  * {
+    @apply box-border;
+  }
+
+  /* Global HTML Styles */
+  html {
+    @apply w-full h-full;
+  }
+
+  /* Global Body Styles */
+  body {
+    @apply m-0 flex justify-center items-center w-full;
+  }
+
+  /* Main Section Styling */
+  main {
+    @apply relative flex flex-col justify-center w-full min-h-screen max-w-3xl mx-auto;
+  }
+
+  /* H1 Styling */
+  h1 {
+    @apply text-4xl font-semibold leading-normal tracking-tight m-0 sm:text-2xl;
+  }
+
+  /* Paragraph Styling */
+  p {
+    @apply text-base font-light leading-7 m-0;
+  }
+
+  /* Anchor Link Styling */
+  a {
+    @apply underline transition-colors duration-200 ease-out;
+  }
+}
