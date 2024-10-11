@@ -16,6 +16,7 @@
   /* Global Body Styles */
   body {
     @apply m-0 flex justify-center items-center w-full;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu; /* All system default fonts as fallback */
   }
 
   /* Main Section Styling */
