@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DB_CONTAINER_NAME="next-payload-3"
+DB_CONTAINER_NAME="munchies-db"
 
 if ! [ -x "$(command -v docker)" ]; then
   echo "Docker is not installed. Please install docker and try again.\nDocker install guide: https://docs.docker.com/engine/install/"
