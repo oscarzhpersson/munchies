@@ -16,6 +16,7 @@
   /* Global Body Styles */
   body {
     @apply m-0 flex justify-center items-center w-full;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu; /* All system default fonts as fallback */
   }
 
   /* Main Section Styling */
@@ -36,5 +37,14 @@
   /* Anchor Link Styling */
   a {
     @apply underline transition-colors duration-200 ease-out;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
