@@ -2160,6 +2160,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/react@npm:^2.1.5":
+  version: 2.1.5
+  resolution: "@heroicons/react@npm:2.1.5"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 10c0/d0ca2d017545da103ed8e90e9e6679d46329c1b09bb4c06ff509b0fe7cfbba7034409ea24b0469fabd2a0a9b144e8e717f58de924615e0b0a1bed7b51fcc5940
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.13.0":
   version: 0.13.0
   resolution: "@humanwhocodes/config-array@npm:0.13.0"
@@ -10515,6 +10524,7 @@ __metadata:
   resolution: "payload-3.0-demo@workspace:."
   dependencies:
     "@chromatic-com/storybook": "npm:^1.9.0"
+    "@heroicons/react": "npm:^2.1.5"
     "@payloadcms/db-postgres": "npm:3.0.0-beta.108"
     "@payloadcms/graphql": "npm:3.0.0-beta.108"
     "@payloadcms/next": "npm:3.0.0-beta.108"

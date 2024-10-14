@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 export interface BadgeCarouselProps {
   title: string
@@ -24,9 +25,11 @@ export function BadgeCarousel({ title, image, active }: BadgeCarouselProps) {
       >
         {title}
       </span>
-      <img
-        className="object-cover w-20 h-20 aspect-square
+      <Image
+        className="object-cover aspect-square
                     translate-x-[5.55rem] absolute"
+        width={80}
+        height={80}
         src={image.url}
         alt={image.alt || title}
       />
