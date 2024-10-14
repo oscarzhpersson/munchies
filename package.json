@@ -23,6 +23,7 @@
     "node": "^18.20.2 || >=20.9.0"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
     "@payloadcms/db-postgres": "3.0.0-beta.108",
     "@payloadcms/next": "3.0.0-beta.108",
     "@payloadcms/richtext-lexical": "3.0.0-beta.108",

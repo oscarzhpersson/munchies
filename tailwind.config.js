@@ -3,6 +3,10 @@ export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}', './public/index.html'],
   theme: {
     extend: {
+      screens: {
+        '2xl': '1440px',
+        sm: '375px',
+      },
       fontSize: {
         display: ['40px', '48px'],
         h1: ['24px', '32px'],
