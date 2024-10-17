@@ -114,8 +114,12 @@ export const fetchRestaurantData = async (): Promise<{
     const restaurantWithDetails: RestaurantWithDetails[] =
       await Promise.all(restaurantDetailsPromises)
 
+    const sortedRestaurants = restaurantWithDetails.sort((a, b) => {
+      return a.openStatus.is_open === b.openStatus.is_open ? 0 : a.openStatus.is_open ? -1 : 1
+    })
+
     return {
-      restaurantWithDetails,
+      restaurantWithDetails: sortedRestaurants,
       filters,
     }
   } catch (error: unknown) {
