@@ -7,7 +7,7 @@ export function transformRestaurantDataApiToDomain(apiResponse: ApiRestaurant): 
     rating: apiResponse.rating,
     filterIds: apiResponse.filter_ids,
     imageUrl: apiResponse.image_url,
-    deliveryTimeInMinutes: apiResponse.delivery_time_in_minutes,
+    deliveryTimeInMinutes: apiResponse.delivery_time_minutes,
     priceRangeId: apiResponse.price_range_id,
   }
 }
