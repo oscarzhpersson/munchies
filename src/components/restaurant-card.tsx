@@ -9,8 +9,8 @@ export interface RestaurantCardProps {
   open: boolean
   rating: number
   filterIds: string[]
-  deliveryTime: string // To be replaced with time range by mapping from CMS.
-  priceRange: string // To be replaced with $ | $$ | $$$ | $$$$ by mapping from CMS. Should probably be removed from here to filter during map.
+  deliveryTime: string
+  priceRange: string
   image: {
     url: string
     alt: string
@@ -19,7 +19,10 @@ export interface RestaurantCardProps {
 
 export function RestaurantCard(props: RestaurantCardProps) {
   return (
-    <div className="relative w-[20.438rem] h-[12.625rem] bg-white rounded-lg border-0.6 border-stroke p-4 overflow-clip">
+    <div
+      className="relative w-[20.438rem] h-[12.625rem] bg-white rounded-lg border-0.6
+                    border-stroke p-4 overflow-clip munchies-shadow"
+    >
       <div className="absolute top-4 left-4 flex flex-row space-x-1 select-none">
         <span className="flex flex-row items-center bg-white border-0.6 border-stroke text-sm px-3 py-1.5 rounded-full">
           <svg
@@ -52,7 +55,7 @@ export function RestaurantCard(props: RestaurantCardProps) {
       )}
 
       <h2
-        className={`absolute bottom-4 left-4 text-h1 ${props.open ? 'opacity-100' : 'opacity-20'}`}
+        className={`w-56 absolute bottom-4 left-4 text-h1 ${props.open ? 'opacity-100' : 'opacity-20'}`}
       >
         {props.title}
       </h2>

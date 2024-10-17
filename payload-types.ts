@@ -21,7 +21,10 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
+  globals: {
+    'site-settings': SiteSetting;
+    'delivery-time-ranges': DeliveryTimeRange;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -70,22 +73,6 @@ export interface Page {
   id: number;
   title?: string | null;
   slug: string;
-  layout?:
-    | {
-        badges?:
-          | {
-              badge: {
-                title: string;
-                image: number | Media;
-              };
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'filter-badge-carousel';
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -168,6 +155,35 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  logo: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "delivery-time-ranges".
+ */
+export interface DeliveryTimeRange {
+  id: number;
+  ranges?:
+    | {
+        lower: number;
+        upper: number;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  upperFallback: string;
+  lowerFallback: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
