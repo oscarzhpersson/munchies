@@ -70,22 +70,6 @@ export interface Page {
   id: number;
   title?: string | null;
   slug: string;
-  layout?:
-    | {
-        badges?:
-          | {
-              badge: {
-                title: string;
-                image: number | Media;
-              };
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'filter-badge-carousel';
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }

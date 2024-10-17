@@ -1,5 +1,4 @@
 import { CollectionConfig } from 'payload'
-import { FilterBadgeCarousel } from '../blocks/filter-badge-carousel'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -18,11 +17,6 @@ export const Pages: CollectionConfig = {
       name: 'slug',
       type: 'text',
       required: true,
-    },
-    {
-      name: 'layout',
-      type: 'blocks',
-      blocks: [FilterBadgeCarousel],
     },
   ],
 }
