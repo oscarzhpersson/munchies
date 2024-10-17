@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       screens: {
-        '2xl': '1440px',
+        displayMax: '1440px',
         sm: '375px',
       },
       fontSize: {
-        display: ['40px', '48px'],
-        h1: ['24px', '32px'],
-        title: ['14px', '20px'],
-        subtitle: ['12px', '18px'],
-        body: ['12px', '16px'],
+        display: ['2.5rem', '3rem'],
+        h1: ['1.5rem', '2rem'],
+        title: ['0.875rem', '1.25rem'],
+        subtitle: ['0.75rem', '1.125rem'],
+        body: ['0.75rem', '1rem'],
       },
       colors: {
         white: '#ffffff',
