@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 import { Users } from '@/payload-cms/collections/users'
 import { Pages } from '@/payload-cms/collections/pages'
 import { Media } from '@/payload-cms/collections/media'
+import { SiteSettings } from '@/payload-cms/globals/site-settings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -17,6 +18,7 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   editor: lexicalEditor(),
   collections: [Users, Pages, Media],
+  globals: [SiteSettings],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
