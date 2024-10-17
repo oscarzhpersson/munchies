@@ -26,4 +26,5 @@ export interface RestaurantWithDetails extends Restaurant {
   openStatus: OpenStatus
   priceRange: PriceRange | null
   filters: Filter[]
+  deliveryTimeLabel?: string
 }

@@ -23,6 +23,7 @@ export interface Config {
   };
   globals: {
     'site-settings': SiteSetting;
+    'delivery-time-ranges': DeliveryTimeRange;
   };
   locale: null;
   user: User & {
@@ -162,6 +163,25 @@ export interface PayloadMigration {
 export interface SiteSetting {
   id: number;
   logo: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "delivery-time-ranges".
+ */
+export interface DeliveryTimeRange {
+  id: number;
+  ranges?:
+    | {
+        lower: number;
+        upper: number;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  upperFallback: string;
+  lowerFallback: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

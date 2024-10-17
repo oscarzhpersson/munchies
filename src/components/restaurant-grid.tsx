@@ -18,7 +18,7 @@ export function RestaurantGrid(props: RestaurantGridProps) {
             open: restaurant.openStatus.is_open,
             rating: restaurant.rating,
             filterIds: restaurant.filterIds,
-            deliveryTime: `${restaurant.deliveryTimeInMinutes} min`,
+            deliveryTime: `${restaurant.deliveryTimeLabel}`,
             priceRange: restaurant.priceRange ? restaurant.priceRange.range : 'N/A',
             image: {
               url: `${restaurant.imageUrl}`,
