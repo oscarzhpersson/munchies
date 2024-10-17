@@ -56,7 +56,12 @@ export const fetchRestaurantData = async (): Promise<{
       `${BASE_URL}/api/restaurants`,
     )
 
-    const domainRestaurants = restaurants.map(transformRestaurantDataApiToDomain)
+    let domainRestaurants = restaurants.map(transformRestaurantDataApiToDomain)
+
+    domainRestaurants = domainRestaurants.map((restaurant) => ({
+      ...restaurant,
+      imageUrl: `${BASE_URL}${restaurant.imageUrl}`,
+    }))
 
     const allFilterIds = Array.from(
       new Set(domainRestaurants.flatMap((restaurant) => restaurant.filterIds)),
@@ -64,9 +69,14 @@ export const fetchRestaurantData = async (): Promise<{
 
     const fetchFilterPromises = allFilterIds.map((filterId) => fetchFilter(filterId))
 
-    const filters = (await Promise.all(fetchFilterPromises)).filter(
+    let filters = (await Promise.all(fetchFilterPromises)).filter(
       (filter): filter is Filter => filter !== null,
     )
+
+    filters = filters.map((filter) => ({
+      ...filter,
+      imageUrl: `${BASE_URL}${filter.imageUrl}`,
+    }))
 
     const filterMap = new Map<string, Filter>()
     filters.forEach((filter) => {

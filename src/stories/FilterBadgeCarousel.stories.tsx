@@ -18,69 +18,41 @@ const Template: StoryFn<FilterBadgeCarouselProps> = (args) => <FilterBadgeCarous
 
 export const Default = Template.bind({})
 Default.args = {
-  badges: [
+  filters: [
     {
       id: '1',
-      title: 'Hamburgers',
-      image: {
-        id: '1',
-        url: HamburgerIcon.src,
-        alt: 'hamburger',
-      },
+      name: 'Hamburgers',
+      imageUrl: HamburgerIcon.src,
     },
     {
       id: '2',
-      title: 'Pizza',
-      image: {
-        id: '2',
-        url: PizzaIcon.src,
-        alt: 'pizza',
-      },
+      name: 'Pizza',
+      imageUrl: PizzaIcon.src,
     },
     {
       id: '3',
-      title: 'Taco',
-      image: {
-        id: '1',
-        url: TacoIcon.src,
-        alt: 'taco',
-      },
+      name: 'Taco',
+      imageUrl: TacoIcon.src,
     },
     {
       id: '4',
-      title: 'Coffee',
-      image: {
-        id: '2',
-        url: CoffeeIcon.src,
-        alt: 'coffee',
-      },
+      name: 'Coffee',
+      imageUrl: CoffeeIcon.src,
     },
     {
       id: '5',
-      title: 'Fries',
-      image: {
-        id: '1',
-        url: FriesIcon.src,
-        alt: 'fries',
-      },
+      name: 'Fries',
+      imageUrl: FriesIcon.src,
     },
     {
       id: '6',
-      title: 'Mexican',
-      image: {
-        id: '2',
-        url: BurritoIcon.src,
-        alt: 'burrito',
-      },
+      name: 'Mexican',
+      imageUrl: BurritoIcon.src,
     },
     {
       id: '7',
-      title: 'Breakfast',
-      image: {
-        id: '1',
-        url: BreakfastIcon.src,
-        alt: 'breakfast',
-      },
+      name: 'Breakfast',
+      imageUrl: BreakfastIcon.src,
     },
   ],
 }

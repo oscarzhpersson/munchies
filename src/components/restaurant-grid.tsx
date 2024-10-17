@@ -7,8 +7,6 @@ export interface RestaurantGridProps {
   restaurants: RestaurantWithDetails[]
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-
 export function RestaurantGrid(props: RestaurantGridProps) {
   return (
     <div className="flex justify-center md:justify-start w-full">
@@ -23,7 +21,7 @@ export function RestaurantGrid(props: RestaurantGridProps) {
             deliveryTime: `${restaurant.deliveryTimeInMinutes} min`,
             priceRange: restaurant.priceRange ? restaurant.priceRange.range : 'N/A',
             image: {
-              url: `${BASE_URL}${restaurant.imageUrl}`,
+              url: `${restaurant.imageUrl}`,
               alt: `${restaurant.name} Image`,
             },
           }

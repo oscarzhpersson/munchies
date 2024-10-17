@@ -15,7 +15,6 @@ Default.args = {
   title: 'Pizza',
   active: false,
   image: {
-    id: '1',
     url: PizzaIcon.src,
     alt: 'Badge 1 Alt',
   },
