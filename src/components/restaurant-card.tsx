@@ -9,8 +9,8 @@ export interface RestaurantCardProps {
   open: boolean
   rating: number
   filterIds: string[]
-  deliveryTime: string // To be replaced with time range by mapping from CMS.
-  priceRange: string // To be replaced with $ | $$ | $$$ | $$$$ by mapping from CMS. Should probably be removed from here to filter during map.
+  deliveryTime: string
+  priceRange: string
   image: {
     url: string
     alt: string
