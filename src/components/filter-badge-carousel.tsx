@@ -2,31 +2,29 @@ import React from 'react'
 
 import { BadgeCarousel } from './badge-carousel'
 
+import type { Filter } from '@/interfaces/filter'
+
 export interface FilterBadgeCarouselProps {
-  activeId: string
-  badges: {
-    id: string
-    title: string
-    image: {
-      id: string
-      url: string
-      alt: string
-    }
-  }[]
+  activeId: string | null
+  filters: Filter[]
 }
 
 export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
+  console.log('props', props)
   return (
     <div
       className="flex flex-row gap-2.5 overflow-x-auto flex-nowrap
                 whitespace-nowrap snap-x snap-proximity hide-scrollbar"
     >
-      {props.badges.map((badge, index) => (
+      {props.filters.map((filter, index) => (
         <BadgeCarousel
           key={index}
-          title={badge.title}
-          image={badge.image}
-          active={badge.id == props.activeId}
+          title={filter.name}
+          image={{
+            url: filter.imageUrl,
+            alt: filter.name + ' Image',
+          }}
+          active={filter.id == props.activeId}
         />
       ))}
     </div>

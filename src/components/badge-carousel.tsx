@@ -5,11 +5,12 @@ export interface BadgeCarouselProps {
   title: string
   active?: boolean
   image: {
-    id: string
     url: string
     alt: string
   }
 }
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 export function BadgeCarousel({ title, image, active }: BadgeCarouselProps) {
   return (
@@ -30,7 +31,7 @@ export function BadgeCarousel({ title, image, active }: BadgeCarouselProps) {
                     translate-x-[5.55rem] absolute"
         width={80}
         height={80}
-        src={image.url}
+        src={`${BASE_URL}${image.url}`}
         alt={image.alt || title}
       />
     </button>

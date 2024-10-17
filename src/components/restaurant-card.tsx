@@ -52,7 +52,7 @@ export function RestaurantCard(props: RestaurantCardProps) {
       )}
 
       <h2
-        className={`absolute bottom-4 left-4 text-h1 ${props.open ? 'opacity-100' : 'opacity-20'}`}
+        className={`w-56 absolute bottom-4 left-4 text-h1 ${props.open ? 'opacity-100' : 'opacity-20'}`}
       >
         {props.title}
       </h2>
