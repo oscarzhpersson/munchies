@@ -10,7 +10,6 @@ export interface FilterBadgeCarouselProps {
 }
 
 export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
-  console.log('props', props)
   return (
     <div
       className="flex flex-row gap-2.5 overflow-x-auto flex-nowrap

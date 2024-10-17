@@ -13,7 +13,7 @@
 
   body {
     @apply m-0 flex justify-center items-center bg-offWhite;
-    font-family: 'SF Pro', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu; /* Force SF Pro as the primary font */
+    font-family: 'SF Pro', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
     line-height: 0.9375rem;
     letter-spacing: -0.03125rem;
   }

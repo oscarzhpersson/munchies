@@ -5,7 +5,7 @@ export default {
     extend: {
       screens: {
         displayMax: '1440px',
-        sm: '375px',
+        displayMin: '375px',
       },
       fontSize: {
         display: ['2.5rem', '3rem'],
