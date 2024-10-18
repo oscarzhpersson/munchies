@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { FilterBadgeCarousel } from '@/components/filter-badge-carousel'
 import { RestaurantGrid } from '@/components/restaurant-grid'
+import { FilterMenu } from '@/components/filter-menu'
 
 import { fetchPageData } from '@/utils/fetchPageData'
 import { fetchRestaurantData } from '@/utils/fetchRestaurantData'
@@ -44,17 +45,30 @@ const Page = async () => {
     // TODO: Instead of using useState maybe use a context to store the active filters or use the URL.
     // TODO: Add proper error message display if necessary.
 
+    // ? Consider removing centring from the grid and doing it in the main page instead for mobile view.
+
     return (
       <div className="w-full min-w-screen-displayMin max-w-screen-displayMax mx-auto">
         <header className="grid grid-cols-12 w-full">
-          <Image src={logoUrl} alt="logo" width={275} height={40} className="col-span-12 my-11" />
-          <div className="col-span-2 bg-white rounded-lg border-0.6 border-stroke munchies-shadow">
-            Placeholder
+          <Image
+            src={logoUrl}
+            alt="logo"
+            width={275}
+            height={40}
+            sizes="(min-width: 768x) 275px, 167px"
+            className="col-span-12 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
+          />
+          <div className="col-span-12 md:col-span-2">
+            <FilterMenu
+              filters={filters}
+              deliveryTimeRanges={deliveryTimeRanges}
+              priceRanges={[]}
+            />
           </div>
-          <main className="col-span-10 ml-4">
+          <main className="col-span-12 md:col-span-10 md:ml-4">
             <FilterBadgeCarousel activeId={null} filters={filters} />
             <div className="flex flex-col justify-between">
-              <h1 className="text-display mt-[2.5rem] mb-9">{page.title || 'title'}</h1>
+              <h1 className="text-display mt-11 mb-9">{page.title || 'title'}</h1>
               <RestaurantGrid restaurants={enrichedRestaurants} />
             </div>
           </main>
