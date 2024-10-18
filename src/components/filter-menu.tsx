@@ -13,7 +13,7 @@ export interface FilterMenuProps {
 const FilterCard = (props: { filter: string; active: boolean }) => {
   return (
     <button
-      className={`items-center rounded-md w-fit hover:scale-95 transition-transform
+      className={`bg-white items-center rounded-md w-fit hover:scale-95 transition-transform
                     relative ${props.active ? 'border-[1px] border-black' : 'border-0.6 border-stroke'} p-2 px-3`}
     >
       <p
