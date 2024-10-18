@@ -9,7 +9,7 @@ export interface RestaurantCardProps {
   open: boolean
   rating: number
   filterIds: string[]
-  deliveryTime: string
+  deliveryTime: string | null
   priceRange: string
   image: {
     url: string
@@ -18,6 +18,7 @@ export interface RestaurantCardProps {
 }
 
 export function RestaurantCard(props: RestaurantCardProps) {
+  console.log('RestaurantCardProps', props)
   return (
     <div
       className="relative w-[20.438rem] h-[12.625rem] bg-white rounded-lg border-0.6
@@ -36,7 +37,7 @@ export function RestaurantCard(props: RestaurantCardProps) {
 
           {props.open ? 'Open' : 'Closed'}
         </span>
-        {props.open && (
+        {props.open && props.deliveryTime && (
           <span className="bg-white border-0.6 border-stroke p-4 text-sm px-3 py-1.5 rounded-full">
             {props.deliveryTime}
           </span>
