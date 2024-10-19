@@ -45,20 +45,17 @@ const Page = async () => {
     // TODO: Instead of using useState maybe use a context to store the active filters or use the URL.
     // TODO: Add proper error message display if necessary.
 
-    // ? Consider removing centring from the grid and doing it in the main page instead for mobile view.
-
     return (
-      <div className="w-full min-w-screen-displayMin max-w-screen-displayMax mx-auto">
-        <header className="grid grid-cols-12 w-full">
+      <div className="w-full max-w-screen-displayMax mx-auto">
+        <header className="grid grid-cols-12 w-full gap-4 md:gap-0 px-8 md:px-0">
           <Image
             src={logoUrl}
             alt="logo"
             width={275}
             height={40}
-            sizes="(min-width: 768x) 275px, 167px"
-            className="col-span-12 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
+            className="col-span-12 mt-11 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
           />
-          <div className="col-span-12 md:col-span-2">
+          <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
             <FilterMenu
               filters={filters}
               deliveryTimeRanges={deliveryTimeRanges}
@@ -68,7 +65,9 @@ const Page = async () => {
           <main className="col-span-12 md:col-span-10 md:ml-4">
             <FilterBadgeCarousel activeId={null} filters={filters} />
             <div className="flex flex-col justify-between">
-              <h1 className="text-display mt-11 mb-9">{page.title || 'title'}</h1>
+              <h1 className="text-h1 md:text-display mt-6 mb-4 md:mt-11 md:mb-9">
+                {page.title || 'title'}
+              </h1>
               <RestaurantGrid restaurants={enrichedRestaurants} />
             </div>
           </main>
@@ -77,6 +76,7 @@ const Page = async () => {
     )
   } catch (error) {
     console.error('Error fetching data:', error)
+    return <div>Sorry, something went wrong.</div>
   }
 }
 

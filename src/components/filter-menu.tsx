@@ -13,7 +13,7 @@ export interface FilterMenuProps {
 const FilterCard = (props: { filter: string; active: boolean }) => {
   return (
     <button
-      className={`bg-white items-center rounded-md w-fit hover:scale-95 transition-transform
+      className={`bg-white items-center rounded-lg w-fit hover:scale-95 transition-transform
                     relative ${props.active ? 'border-[1px] border-black' : 'border-0.6 border-stroke'} p-2 px-3`}
     >
       <p
@@ -43,7 +43,7 @@ export function FilterMenu(props: FilterMenuProps) {
         </div>
       </div>
       <div>
-        <p className="text-subtitle font-semibold opacity-40 mb-4 mt-8">DELIVERY TIME</p>
+        <p className="text-subtitle font-semibold opacity-40 mb-2 lg:mb-4 lg:mt-8">DELIVERY TIME</p>
         <div
           className="flex flex-row gap-2 overflow-x-auto flex-nowrap whitespace-nowrap snap-x
                         snap-proximity hide-scrollbar md:flex-wrap md:overflow-visible md:whitespace-normal"

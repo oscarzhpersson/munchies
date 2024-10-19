@@ -21,7 +21,7 @@ export function RestaurantCard(props: RestaurantCardProps) {
   console.log('RestaurantCardProps', props)
   return (
     <div
-      className="relative w-[20.438rem] h-[12.625rem] bg-white rounded-lg border-0.6
+      className="relative w-full col-span-1 md:w-[20.438rem] h-[12.625rem] bg-white rounded-lg border-0.6
                     border-stroke p-4 overflow-clip munchies-shadow"
     >
       <div className="absolute top-4 left-4 flex flex-row space-x-1 select-none">
