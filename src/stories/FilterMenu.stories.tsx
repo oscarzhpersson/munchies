@@ -85,22 +85,5 @@ Default.args = {
     upperFallback: '30+ min',
     lowerFallback: '5-10 min',
   },
-  priceRanges: [
-    {
-      id: '1',
-      range: '$',
-    },
-    {
-      id: '2',
-      range: '$$',
-    },
-    {
-      id: '3',
-      range: '$$$',
-    },
-    {
-      id: '4',
-      range: '$$$$',
-    },
-  ],
+  priceRanges: ['$', '$$', '$$$', '$$$$'],
 }
