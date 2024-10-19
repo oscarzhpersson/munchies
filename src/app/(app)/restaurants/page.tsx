@@ -5,10 +5,10 @@ import { FilterBadgeCarousel } from '@/components/filter-badge-carousel'
 import { RestaurantGrid } from '@/components/restaurant-grid'
 import { FilterMenu } from '@/components/filter-menu'
 
-import { fetchPageData } from '@/utils/fetchPageData'
-import { fetchRestaurantData } from '@/utils/fetchRestaurantData'
-import { fetchLogo } from '@/utils/fetchLogo'
-import { fetchDeliveryTimeRanges } from '@/utils/fetchDeliveryRanges'
+import { fetchPageData } from '@/services/fetchPageData'
+import { fetchRestaurantData } from '@/services/restaurantService'
+import { fetchLogo } from '@/services/fetchLogo'
+import { fetchDeliveryTimeRanges } from '@/services/fetchDeliveryRanges'
 
 import { formatNumberToDeliveryTimeRange } from '@/utils/formatNumberToDeliveryTimeRange'
 import { extractPriceRanges } from '@/utils/extractPriceRanges'
@@ -47,6 +47,8 @@ const Page = async () => {
     // TODO: Top filter bar and filters should be the same.
     // TODO: Instead of using useState maybe use a context to store the active filters or use the URL.
     // TODO: Add proper error message display if necessary.
+
+    // ? In type filter menu when hovering over the first element the entire container shrinks.
 
     return (
       <div className="w-full max-w-screen-displayMax mx-auto mb-6">
