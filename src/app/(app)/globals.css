@@ -16,6 +16,7 @@
     font-family: 'SF Pro', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
     line-height: 0.9375rem;
     letter-spacing: -0.03125rem;
+    min-width: 375px;
   }
   
   h1 {

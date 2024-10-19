@@ -9,7 +9,7 @@ export interface RestaurantGridProps {
 
 export function RestaurantGrid(props: RestaurantGridProps) {
   return (
-    <div className="flex justify-center md:justify-start w-full">
+    <div className="md:flex md:justify-start md:w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {props.restaurants.map((restaurant, index) => {
           const restaurantCardProps: RestaurantCardProps = {
@@ -18,7 +18,7 @@ export function RestaurantGrid(props: RestaurantGridProps) {
             open: restaurant.openStatus.is_open,
             rating: restaurant.rating,
             filterIds: restaurant.filterIds,
-            deliveryTime: `${restaurant.deliveryTimeLabel}`,
+            deliveryTime: restaurant.deliveryTimeLabel || null,
             priceRange: restaurant.priceRange ? restaurant.priceRange.range : 'N/A',
             image: {
               url: `${restaurant.imageUrl}`,

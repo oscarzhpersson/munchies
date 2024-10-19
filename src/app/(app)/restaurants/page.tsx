@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { FilterBadgeCarousel } from '@/components/filter-badge-carousel'
 import { RestaurantGrid } from '@/components/restaurant-grid'
+import { FilterMenu } from '@/components/filter-menu'
 
 import { fetchPageData } from '@/utils/fetchPageData'
 import { fetchRestaurantData } from '@/utils/fetchRestaurantData'
@@ -10,6 +11,7 @@ import { fetchLogo } from '@/utils/fetchLogo'
 import { fetchDeliveryTimeRanges } from '@/utils/fetchDeliveryRanges'
 
 import { formatNumberToDeliveryTimeRange } from '@/utils/formatNumberToDeliveryTimeRange'
+import { extractPriceRanges } from '@/utils/extractPriceRanges'
 
 import type { RestaurantWithDetails } from '@/interfaces/restaurant'
 
@@ -40,21 +42,35 @@ const Page = async () => {
       ),
     }))
 
+    const priceRanges = extractPriceRanges(enrichedRestaurants)
+
     // TODO: Top filter bar and filters should be the same.
     // TODO: Instead of using useState maybe use a context to store the active filters or use the URL.
     // TODO: Add proper error message display if necessary.
 
     return (
-      <div className="w-full min-w-screen-displayMin max-w-screen-displayMax mx-auto">
-        <header className="grid grid-cols-12 w-full">
-          <Image src={logoUrl} alt="logo" width={275} height={40} className="col-span-12 my-11" />
-          <div className="col-span-2 bg-white rounded-lg border-0.6 border-stroke munchies-shadow">
-            Placeholder
+      <div className="w-full max-w-screen-displayMax mx-auto mb-6">
+        <header className="grid grid-cols-12 w-full gap-4 md:gap-0 px-8 lg:px-0">
+          <Image
+            src={logoUrl}
+            alt="logo"
+            width={275}
+            height={40}
+            className="col-span-12 mt-11 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
+          />
+          <div className="col-span-12 md:col-span-3 lg:col-span-2 mb-4 md:mb-0">
+            <FilterMenu
+              filters={filters}
+              deliveryTimeRanges={deliveryTimeRanges}
+              priceRanges={priceRanges}
+            />
           </div>
-          <main className="col-span-10 ml-4">
+          <main className="col-span-12 md:col-span-9 lg:col-span-10 md:ml-4">
             <FilterBadgeCarousel activeId={null} filters={filters} />
             <div className="flex flex-col justify-between">
-              <h1 className="text-display mt-[2.5rem] mb-9">{page.title || 'title'}</h1>
+              <h1 className="text-h1 md:text-display mt-6 mb-4 md:mt-11 md:mb-9">
+                {page.title || 'title'}
+              </h1>
               <RestaurantGrid restaurants={enrichedRestaurants} />
             </div>
           </main>
@@ -63,6 +79,7 @@ const Page = async () => {
     )
   } catch (error) {
     console.error('Error fetching data:', error)
+    return <div>Sorry, something went wrong.</div>
   }
 }
 

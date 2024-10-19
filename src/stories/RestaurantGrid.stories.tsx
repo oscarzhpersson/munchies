@@ -28,7 +28,8 @@ Default.args = {
       },
       rating: 1,
       filterIds: [],
-      deliveryTimeInMinutes: 60,
+      deliveryTimeInMinutes: 1,
+      deliveryTimeLabel: '1 min',
       priceRange: {
         id: '1',
         range: '$$',
@@ -47,6 +48,7 @@ Default.args = {
       rating: 1,
       filterIds: [],
       deliveryTimeInMinutes: 5,
+      deliveryTimeLabel: '1 min',
       priceRange: {
         id: '1',
         range: '$$',
@@ -65,6 +67,7 @@ Default.args = {
       rating: 1,
       filterIds: [],
       deliveryTimeInMinutes: 10,
+      deliveryTimeLabel: '1 min',
       priceRange: {
         id: '1',
         range: '$$',
@@ -83,6 +86,7 @@ Default.args = {
       rating: 1,
       filterIds: [],
       deliveryTimeInMinutes: 5,
+      deliveryTimeLabel: '1 min',
       priceRange: {
         id: '1',
         range: '$$',
@@ -101,6 +105,7 @@ Default.args = {
       rating: 1,
       filterIds: [],
       deliveryTimeInMinutes: 75,
+      deliveryTimeLabel: '1 min',
       priceRange: {
         id: '1',
         range: '$$',

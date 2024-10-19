@@ -5,7 +5,8 @@ export default {
     extend: {
       screens: {
         displayMax: '1440px',
-        displayMin: '375px',
+        md: '775px',
+        lg: '1200px',
       },
       fontSize: {
         display: ['2.5rem', '3rem'],
@@ -24,6 +25,9 @@ export default {
       },
       borderWidth: {
         0.6: '0.6px',
+      },
+      fontWeight: {
+        semibold: 590,
       },
     },
   },
