@@ -7,7 +7,7 @@ import type { PriceRange } from '@/interfaces/price-range'
 export interface FilterMenuProps {
   filters: Filter[]
   deliveryTimeRanges: DeliveryTime | null
-  priceRanges: PriceRange[]
+  priceRanges: string[]
 }
 
 const FilterCard = (props: { filter: string; active: boolean }) => {
@@ -64,7 +64,7 @@ export function FilterMenu(props: FilterMenuProps) {
         <p className="text-subtitle font-semibold opacity-40 mb-4 mt-8">PRICE RANGE</p>
         <div className="flex flex-row flex-wrap my-4 gap-2">
           {props.priceRanges.map((priceRange, index) => (
-            <FilterCard key={index} filter={priceRange.range} active={false} />
+            <FilterCard key={index} filter={priceRange} active={false} />
           ))}
         </div>
       </div>

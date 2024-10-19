@@ -11,6 +11,7 @@ import { fetchLogo } from '@/utils/fetchLogo'
 import { fetchDeliveryTimeRanges } from '@/utils/fetchDeliveryRanges'
 
 import { formatNumberToDeliveryTimeRange } from '@/utils/formatNumberToDeliveryTimeRange'
+import { extractPriceRanges } from '@/utils/extractPriceRanges'
 
 import type { RestaurantWithDetails } from '@/interfaces/restaurant'
 
@@ -41,6 +42,8 @@ const Page = async () => {
       ),
     }))
 
+    const priceRanges = extractPriceRanges(enrichedRestaurants)
+
     // TODO: Top filter bar and filters should be the same.
     // TODO: Instead of using useState maybe use a context to store the active filters or use the URL.
     // TODO: Add proper error message display if necessary.
@@ -55,14 +58,14 @@ const Page = async () => {
             height={40}
             className="col-span-12 mt-11 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
           />
-          <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
+          <div className="col-span-12 md:col-span-3 lg:col-span-2 mb-4 md:mb-0">
             <FilterMenu
               filters={filters}
               deliveryTimeRanges={deliveryTimeRanges}
-              priceRanges={[]}
+              priceRanges={priceRanges}
             />
           </div>
-          <main className="col-span-12 md:col-span-10 md:ml-4">
+          <main className="col-span-12 md:col-span-9 lg:col-span-10 md:ml-4">
             <FilterBadgeCarousel activeId={null} filters={filters} />
             <div className="flex flex-col justify-between">
               <h1 className="text-h1 md:text-display mt-6 mb-4 md:mt-11 md:mb-9">
