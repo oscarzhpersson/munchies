@@ -49,7 +49,7 @@ const Page = async () => {
     // TODO: Add proper error message display if necessary.
 
     return (
-      <div className="w-full max-w-screen-displayMax mx-auto">
+      <div className="w-full max-w-screen-displayMax mx-auto mb-6">
         <header className="grid grid-cols-12 w-full gap-4 md:gap-0 px-8 lg:px-0">
           <Image
             src={logoUrl}
