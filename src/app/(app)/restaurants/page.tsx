@@ -50,7 +50,7 @@ const Page = async () => {
 
     return (
       <div className="w-full max-w-screen-displayMax mx-auto">
-        <header className="grid grid-cols-12 w-full gap-4 md:gap-0 px-8 md:px-0">
+        <header className="grid grid-cols-12 w-full gap-4 md:gap-0 px-8 lg:px-0">
           <Image
             src={logoUrl}
             alt="logo"
