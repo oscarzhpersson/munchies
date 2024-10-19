@@ -45,7 +45,7 @@ export function FilterMenu(props: FilterMenuProps) {
       <div>
         <p className="text-subtitle font-semibold opacity-40 mb-2 lg:mb-4 lg:mt-8">DELIVERY TIME</p>
         <div
-          className="flex flex-row gap-2 overflow-x-auto flex-nowrap whitespace-nowrap snap-x
+          className="flex flex-row gap-2 overflow-x-scroll flex-nowrap whitespace-nowrap snap-x
                         snap-proximity hide-scrollbar md:flex-wrap md:overflow-visible md:whitespace-normal"
         >
           {props.deliveryTimeRanges?.ranges?.map((deliveryTimeRange, index) => (
