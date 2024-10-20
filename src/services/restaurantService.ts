@@ -1,6 +1,6 @@
 import { transformRestaurantDataApiToDomain } from '@/transformers/restaurantApiToDomainTransformer'
 import { fetchWithErrorHandling } from './apiClient'
-import { fetchAndTransformFilters } from '@/services/filterService'
+import { fetchAndTransformFilters } from '@/services/filterRetrievalService'
 import { fetchOpenStatus } from '@/services/openStatusService'
 import { fetchPriceRange } from '@/services/priceRangeService'
 
