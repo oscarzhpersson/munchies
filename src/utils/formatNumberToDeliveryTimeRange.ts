@@ -1,5 +1,12 @@
 import type { DeliveryTime } from '@/interfaces/delivery-time'
 
+/**
+ * Formats a numeric value into a delivery time range label based on predefined ranges.
+ *
+ * @param {number} num - The number to format into a delivery time range.
+ * @param {DeliveryTime | null} ranges - The delivery time ranges configuration.
+ * @returns {string | undefined} The delivery time range label or a fallback value.
+ */
 export const formatNumberToDeliveryTimeRange = (num: number, ranges: DeliveryTime | null) => {
   if (!ranges?.ranges) {
     return ranges?.upperFallback

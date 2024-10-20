@@ -4,6 +4,12 @@ import { getPayloadHMR } from '@payloadcms/next/utilities'
 
 import type { Logo } from '@/interfaces/logo'
 
+/**
+ * Fetches the logo URL from the site settings.
+ *
+ * @returns {Promise<string>} A promise that resolves to the logo URL.
+ * @throws Will throw an error if the logo is not found.
+ */
 export const fetchLogo = async () => {
   const payload = await getPayloadHMR({ config })
 

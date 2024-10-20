@@ -1,5 +1,11 @@
 import type { Filter, ApiFilter } from '@/interfaces/filter'
 
+/**
+ * Transforms API filter data into the domain filter model.
+ *
+ * @param {ApiFilter} apiResponse - The API filter data received from the backend.
+ * @returns {Filter} The transformed filter object suitable for frontend use.
+ */
 export function transformFilterDataApiToDomain(apiResponse: ApiFilter): Filter {
   return {
     id: apiResponse.id,
