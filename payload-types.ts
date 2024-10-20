@@ -24,6 +24,7 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'delivery-time-ranges': DeliveryTimeRange;
+    'overlay-content': OverlayContent;
   };
   locale: null;
   user: User & {
@@ -182,6 +183,19 @@ export interface DeliveryTimeRange {
     | null;
   upperFallback: string;
   lowerFallback: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "overlay-content".
+ */
+export interface OverlayContent {
+  id: number;
+  logo: number | Media;
+  title: string;
+  description: string;
+  buttonText: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
