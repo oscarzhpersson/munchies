@@ -63,7 +63,7 @@ export function RestaurantCard(props: RestaurantCardProps) {
 
       <button
         disabled={!props.open}
-        className={`absolute bottom-4 right-4 bg-green text-white rounded-full
+        className={`absolute bottom-4 right-4 bg-green text-white rounded-full duration-50
                     p-2 h-10 w-10 flex justify-center items-center transition-transform
                     ease-in-out ${props.open ? 'hover:scale-95 opacity-100' : 'opacity-20'}`}
         aria-label="View restaurant details"
