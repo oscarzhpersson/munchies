@@ -4,6 +4,11 @@ import type { DeliveryTime } from '@/interfaces/delivery-time'
 
 import config from '@payload-config'
 
+/**
+ * Fetches the delivery time ranges configuration from the CMS.
+ *
+ * @returns {Promise<DeliveryTime | null>} A promise that resolves to the delivery time ranges, or null if an error occurs.
+ */
 export const fetchDeliveryTimeRanges = async () => {
   try {
     const payload = await getPayloadHMR({ config })

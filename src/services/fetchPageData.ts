@@ -3,6 +3,13 @@ import { Page } from '@/interfaces/page'
 
 import config from '@payload-config'
 
+/**
+ * Fetches page data from the CMS based on the provided slug.
+ *
+ * @param {string} slug - The slug of the page to fetch.
+ * @returns {Promise<Page>} A promise that resolves to the page data.
+ * @throws Will throw an error if the slug is invalid or if the page is not found.
+ */
 export const fetchPageData = async (slug: string) => {
   if (!slug || typeof slug !== 'string') {
     throw new Error('Invalid slug provided')
