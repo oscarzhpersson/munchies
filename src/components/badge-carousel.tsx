@@ -8,11 +8,13 @@ export interface BadgeCarouselProps {
     url: string
     alt: string
   }
+  updateFilterSelection: (filter: string) => void
 }
 
-export function BadgeCarousel({ title, image, active }: BadgeCarouselProps) {
+export function BadgeCarousel({ title, image, active, updateFilterSelection }: BadgeCarouselProps) {
   return (
     <button
+      onClick={() => updateFilterSelection(title.toLowerCase())}
       className={`flex flex-row justify-between items-center flex-shrink-0 snap-start
                 bg-white w-40 h-20 rounded-lg relative border-0.6 border-stroke munchies-shadow
                 hover:bg-strokeOpaque hover:scale-95 transition-transform will-change-transform

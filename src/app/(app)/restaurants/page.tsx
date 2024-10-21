@@ -49,8 +49,7 @@ const Page = async () => {
 
     const priceRanges = extractPriceRanges(enrichedRestaurants)
 
-    // TODO: Top filter bar and filters should be the same.
-    // TODO: Instead of using useState maybe use a context to store the active filters or use the URL.
+    // TODO: Add accessibility functionality for perfect light house score.
     // TODO: Add proper error message display if necessary.
 
     // ? In type filter menu when hovering over the first element the entire container shrinks.
