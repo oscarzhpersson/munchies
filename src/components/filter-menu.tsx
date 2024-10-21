@@ -28,13 +28,9 @@ const FilterCard = memo(
       <button
         onClick={() => updateFilterSelection(filter.toLowerCase())}
         className={`bg-white items-center rounded-lg w-fit hover:scale-95 transition-transform duration-50 ease-in-out
-                      relative ${active ? 'border-[1px] border-black' : 'border-0.6 border-stroke'} p-1.5 px-3`}
+                      relative border-0.6 ${active ? 'bg-stroke' : 'border-stroke'} p-1.5 px-3`}
       >
-        <p
-          aria-label={'Filter' + filter}
-          className={`text-body select-none
-                      ${active ? 'font-medium' : 'font-normal'}`}
-        >
+        <p aria-label={'Filter' + filter} className={`text-body select-none`}>
           {filter}
         </p>
       </button>

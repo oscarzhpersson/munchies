@@ -73,7 +73,7 @@ const Page = async () => {
             />
           </div>
           <main className="col-span-12 md:col-span-9 lg:col-span-10 ml-8 md:ml-4">
-            <FilterBadgeCarousel activeId={null} filters={filters} />
+            <FilterBadgeCarousel filters={filters} />
             <div className="flex flex-col justify-between mr-8 md:mr-0">
               <h1 className="text-h1 md:text-display mt-6 mb-4 md:mt-11 md:mb-9">
                 {page.title || 'title'}
