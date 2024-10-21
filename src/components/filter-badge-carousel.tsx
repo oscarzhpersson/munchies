@@ -4,7 +4,7 @@ import React from 'react'
 
 import { BadgeCarousel } from './badge-carousel'
 import { useRouter } from 'next/navigation'
-import { updateFilterInUrl, useCurrentFiltersFromUrl } from '@/services/filterService'
+import { updateFilterInUrl } from '@/services/filterService'
 
 import type { Filter } from '@/interfaces/filter'
 

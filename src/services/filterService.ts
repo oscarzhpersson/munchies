@@ -1,5 +1,4 @@
 import { useRouter } from 'next/navigation'
-import { useSearchParams } from 'next/navigation'
 
 type RouterType = ReturnType<typeof useRouter>
 
@@ -26,17 +25,5 @@ export const updateFilterInUrl = (router: RouterType, filterToUpdate: string) =>
     searchParams.delete('filter')
   }
 
-  router.push(`${currentUrl.pathname}?${searchParams.toString()}`)
-}
-
-/**
- * Custom hook to retrieve the current filters from the URL.
- *
- * @returns {string[]} - The array of current filters from the URL.
- */
-export const useCurrentFiltersFromUrl = (): string[] => {
-  const searchParams = useSearchParams()
-  const filterParam = searchParams.get('filter')
-
-  return filterParam ? filterParam.split(',') : []
+  router.replace(`${currentUrl.pathname}?${searchParams.toString()}`)
 }
