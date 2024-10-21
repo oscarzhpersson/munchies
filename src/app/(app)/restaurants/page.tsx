@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { FilterBadgeCarousel } from '@/components/filter-badge-carousel'
 import { RestaurantGrid } from '@/components/restaurant-grid'
@@ -58,13 +59,13 @@ const Page = async () => {
       <div className="w-full max-w-screen-displayMax mx-auto mb-6">
         <AppOverlay className="md:hidden" overlay={overlayContent} />
         <header className="grid grid-cols-12 w-full gap-4 md:px-8 md:gap-0 lg:px-0">
-          <Image
-            src={logoUrl}
-            alt="logo"
-            width={275}
-            height={40}
+          <Link
+            aria-label="Munchies logo"
             className="col-span-12 mx-8 md:mx-0 mt-11 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
-          />
+            href="/restaurants"
+          >
+            <Image src={logoUrl} alt="logo" width={275} height={40} className="w-full h-full" />
+          </Link>
           <div className="col-span-12 md:col-span-3 lg:col-span-2 mb-4 mx-8 md:mx-0 md:mb-0">
             <FilterMenu
               filters={filters}
