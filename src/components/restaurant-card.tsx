@@ -18,7 +18,6 @@ export interface RestaurantCardProps {
 }
 
 export function RestaurantCard(props: RestaurantCardProps) {
-  console.log('RestaurantCardProps', props)
   return (
     <div
       className="relative w-full col-span-1 md:w-[20.438rem] h-[12.625rem] bg-white rounded-lg border-0.6

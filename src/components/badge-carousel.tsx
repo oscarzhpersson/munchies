@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Image from 'next/image'
 
 export interface BadgeCarouselProps {
@@ -39,3 +39,5 @@ export function BadgeCarousel({ title, image, active, updateFilterSelection }: B
     </button>
   )
 }
+
+export default memo(BadgeCarousel)

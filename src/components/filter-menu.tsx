@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { memo } from 'react'
 
-import { useRouter } from 'next/navigation'
-import { updateFilterInUrl, useCurrentFiltersFromUrl } from '@/services/filterService'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { updateFilterInUrl } from '@/services/filterService'
 
 import type { Filter } from '@/interfaces/filter'
 import type { DeliveryTime } from '@/interfaces/delivery-time'
@@ -14,44 +14,47 @@ export interface FilterMenuProps {
   priceRanges: string[]
 }
 
-const FilterCard = ({
-  updateFilterSelection,
-  filter,
-  active,
-}: {
-  updateFilterSelection: (filter: string) => void
-  filter: string
-  active: boolean
-}) => {
-  return (
-    <button
-      onClick={() => updateFilterSelection(filter.toLowerCase())}
-      className={`bg-white items-center rounded-lg w-fit hover:scale-95 transition-transform duration-50 ease-in-out
-                    relative ${active ? 'border-[1px] border-black' : 'border-0.6 border-stroke'} p-1.5 px-3`}
-    >
-      <p
-        aria-label={'Filter' + filter}
-        className={`text-body select-none
-                    ${active ? 'font-medium' : 'font-normal'}`}
+const FilterCard = memo(
+  ({
+    updateFilterSelection,
+    filter,
+    active,
+  }: {
+    updateFilterSelection: (filter: string) => void
+    filter: string
+    active: boolean
+  }) => {
+    return (
+      <button
+        onClick={() => updateFilterSelection(filter.toLowerCase())}
+        className={`bg-white items-center rounded-lg w-fit hover:scale-95 transition-transform duration-50 ease-in-out
+                      relative ${active ? 'border-[1px] border-black' : 'border-0.6 border-stroke'} p-1.5 px-3`}
       >
-        {filter}
-      </p>
-    </button>
-  )
-}
+        <p
+          aria-label={'Filter' + filter}
+          className={`text-body select-none
+                      ${active ? 'font-medium' : 'font-normal'}`}
+        >
+          {filter}
+        </p>
+      </button>
+    )
+  },
+  (prevProps, nextProps) => {
+    return prevProps.filter === nextProps.filter && prevProps.active === nextProps.active
+  },
+)
 
 export function FilterMenu(props: FilterMenuProps) {
   const router = useRouter()
-  const [activeFilters, setActiveFilters] = useState<string[]>([])
+
+  const searchParams = useSearchParams()
+  const filterParam = searchParams.get('filter')
+  const filtersFromUrl = filterParam ? filterParam.split(',') : []
 
   const handleFilterUpdate = (filterToUpdate: string) => {
     updateFilterInUrl(router, filterToUpdate)
   }
-
-  /*useEffect(() => {
-    const filtersFromUrl = useCurrentFiltersFromUrl()
-    setActiveFilters(filtersFromUrl)
-  }, [])*/
 
   return (
     <div
@@ -67,7 +70,7 @@ export function FilterMenu(props: FilterMenuProps) {
               key={index}
               updateFilterSelection={handleFilterUpdate}
               filter={filter.name}
-              active={activeFilters.includes(filter.name.toLowerCase())}
+              active={filtersFromUrl.includes(filter.name.toLowerCase())}
             />
           ))}
         </div>
@@ -91,7 +94,7 @@ export function FilterMenu(props: FilterMenuProps) {
               key={props.deliveryTimeRanges.ranges?.length}
               updateFilterSelection={handleFilterUpdate}
               filter={props.deliveryTimeRanges.upperFallback}
-              active={activeFilters.includes(props.deliveryTimeRanges.upperFallback.toLowerCase())}
+              active={filtersFromUrl.includes(props.deliveryTimeRanges.upperFallback.toLowerCase())}
             />
           )}
         </div>
@@ -104,7 +107,7 @@ export function FilterMenu(props: FilterMenuProps) {
               key={index}
               updateFilterSelection={handleFilterUpdate}
               filter={priceRange}
-              active={activeFilters.includes(priceRange.toLowerCase())}
+              active={filtersFromUrl.includes(priceRange.toLowerCase())}
             />
           ))}
         </div>
