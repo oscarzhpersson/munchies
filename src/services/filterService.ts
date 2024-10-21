@@ -25,5 +25,5 @@ export const updateFilterInUrl = (router: RouterType, filterToUpdate: string) =>
     searchParams.delete('filter')
   }
 
-  router.push(`${currentUrl.pathname}?${searchParams.toString()}`)
+  router.replace(`${currentUrl.pathname}?${searchParams.toString()}`)
 }

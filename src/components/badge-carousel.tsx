@@ -18,9 +18,8 @@ export function BadgeCarousel({ title, image, active, updateFilterSelection }: B
       onClick={() => updateFilterSelection(title.toLowerCase())}
       className={`flex flex-row justify-between items-center flex-shrink-0 snap-start
                 w-40 h-20 rounded-lg relative border-0.6 border-stroke munchies-shadow
-                hover:bg-strokeOpaque hover:scale-95 transition-transform will-change-transform
-                duration-50 focus:border-1 ease-in-out
-                ${active ? 'bg-strokeOpaque' : 'bg-white'}`}
+                hover:scale-95 transition-transform will-change-transform duration-50
+                focus:border-1 ease-in-out ${active ? 'bg-strokeOpaque' : 'bg-white'}`}
       style={{ transformOrigin: 'center' }}
     >
       <span

@@ -4,6 +4,7 @@ import React, { memo } from 'react'
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
+import { slugifyFilter } from '@/utils/urlHelpers'
 
 import type { Filter } from '@/interfaces/filter'
 import type { DeliveryTime } from '@/interfaces/delivery-time'
@@ -49,7 +50,11 @@ export function FilterMenu(props: FilterMenuProps) {
   const filtersFromUrl = filterParam ? filterParam.split(',') : []
 
   const handleFilterUpdate = (filterToUpdate: string) => {
-    updateFilterInUrl(router, filterToUpdate)
+    updateFilterInUrl(router, slugifyFilter(filterToUpdate))
+  }
+
+  const filterComparison = (filter: string) => {
+    return filtersFromUrl.includes(slugifyFilter(filter))
   }
 
   return (
@@ -66,7 +71,7 @@ export function FilterMenu(props: FilterMenuProps) {
               key={index}
               updateFilterSelection={handleFilterUpdate}
               filter={filter.name}
-              active={filtersFromUrl.includes(filter.name.toLowerCase())}
+              active={filterComparison(filter.name)}
             />
           ))}
         </div>
@@ -82,7 +87,7 @@ export function FilterMenu(props: FilterMenuProps) {
               key={index}
               updateFilterSelection={handleFilterUpdate}
               filter={deliveryTimeRange.label}
-              active={false}
+              active={filterComparison(deliveryTimeRange.label)}
             />
           ))}
           {props.deliveryTimeRanges?.upperFallback && (
@@ -90,7 +95,7 @@ export function FilterMenu(props: FilterMenuProps) {
               key={props.deliveryTimeRanges.ranges?.length}
               updateFilterSelection={handleFilterUpdate}
               filter={props.deliveryTimeRanges.upperFallback}
-              active={filtersFromUrl.includes(props.deliveryTimeRanges.upperFallback.toLowerCase())}
+              active={filterComparison(props.deliveryTimeRanges.upperFallback)}
             />
           )}
         </div>
@@ -103,7 +108,7 @@ export function FilterMenu(props: FilterMenuProps) {
               key={index}
               updateFilterSelection={handleFilterUpdate}
               filter={priceRange}
-              active={filtersFromUrl.includes(priceRange.toLowerCase())}
+              active={filterComparison(priceRange)}
             />
           ))}
         </div>
