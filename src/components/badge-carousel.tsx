@@ -21,6 +21,7 @@ export function BadgeCarousel({ title, image, active, updateFilterSelection }: B
                 hover:scale-95 transition-transform will-change-transform duration-50
                 focus:border-1 ease-in-out ${active ? 'bg-strokeOpaque' : 'bg-white'}`}
       style={{ transformOrigin: 'center' }}
+      aria-label={'Filter toggle - ' + title}
     >
       <span
         className="text-sm font-normal leading-none tracking-[-0.5px]
