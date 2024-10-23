@@ -15,10 +15,24 @@ import { fetchOverlayContent } from '@/services/fetchOverlayContent'
 
 import { formatNumberToDeliveryTimeRange } from '@/utils/formatNumberToDeliveryTimeRange'
 import { extractPriceRanges } from '@/utils/extractPriceRanges'
+import { extractFiltersFromUrlParam } from '@/utils/urlHelpers'
+import { filterRestaurants } from '@/utils/filterHelpers'
 
 import type { RestaurantWithDetails } from '@/interfaces/restaurant'
 
-const Page = async () => {
+interface PageProps {
+  searchParams: {
+    category?: string | string[]
+    deliveryTime?: string | string[]
+    priceRange?: string | string[]
+  }
+}
+
+const Page = async ({ searchParams }: PageProps) => {
+  const categoriesFromUrl = extractFiltersFromUrlParam(searchParams.category)
+  const deliveryTimesFromUrl = extractFiltersFromUrlParam(searchParams.deliveryTime)
+  const priceRangesFromUrl = extractFiltersFromUrlParam(searchParams.priceRange)
+
   try {
     const [page, restaurantData, logoUrl, deliveryTimeRanges, overlayContent] = await Promise.all([
       fetchPageData('restaurants').catch((err) => {
@@ -40,7 +54,14 @@ const Page = async () => {
 
     const { restaurantWithDetails: restaurants, filters } = restaurantData
 
-    const enrichedRestaurants: RestaurantWithDetails[] = restaurants.map((restaurant) => ({
+    const filteredRestaurants = filterRestaurants(
+      restaurants,
+      categoriesFromUrl,
+      deliveryTimesFromUrl,
+      priceRangesFromUrl,
+    )
+
+    const enrichedRestaurants: RestaurantWithDetails[] = filteredRestaurants.map((restaurant) => ({
       ...restaurant,
       deliveryTimeLabel: formatNumberToDeliveryTimeRange(
         restaurant.deliveryTimeInMinutes,

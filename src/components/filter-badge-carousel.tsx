@@ -22,7 +22,7 @@ export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
   const filtersFromUrl = filterParam ? filterParam.split(',') : []
 
   const handleFilterUpdate = (filterToUpdate: string) => {
-    updateFilterInUrl(router, slugifyFilter(filterToUpdate))
+    updateFilterInUrl(router, 'category', slugifyFilter(filterToUpdate))
   }
 
   const filterComparison = (filter: string) => {
