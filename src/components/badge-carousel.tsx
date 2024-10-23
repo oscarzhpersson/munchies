@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Image from 'next/image'
 
 export interface BadgeCarouselProps {
@@ -8,15 +8,19 @@ export interface BadgeCarouselProps {
     url: string
     alt: string
   }
+  updateFilterSelection: (filter: string) => void
 }
 
-export function BadgeCarousel({ title, image, active }: BadgeCarouselProps) {
+export function BadgeCarousel({ title, image, active, updateFilterSelection }: BadgeCarouselProps) {
   return (
     <button
+      onClick={() => updateFilterSelection(title.toLowerCase())}
       className={`flex flex-row justify-between items-center flex-shrink-0 snap-start
-                bg-white w-40 h-20 rounded-lg relative border-0.6 border-stroke munchies-shadow
-                hover:bg-strokeOpaque hover:scale-95 transition-transform focus-visible:outline-none duration-50
-                ease-in-out ${active ? 'bg-strokeOpaque' : 'focus:bg-strokeOpaque focus:scale-95'}`}
+                w-40 h-20 rounded-lg relative border-0.6 border-stroke munchies-shadow hover:scale-95
+                transition-transform will-change-transform duration-50 focus:border-1 ease-in-out
+                ${active ? 'bg-green text-offWhite shadow-inner' : 'bg-white text-black'}`}
+      style={{ transformOrigin: 'center' }}
+      aria-label={'Filter toggle - ' + title}
     >
       <span
         className="text-sm font-normal leading-none tracking-[-0.5px]
@@ -35,3 +39,5 @@ export function BadgeCarousel({ title, image, active }: BadgeCarouselProps) {
     </button>
   )
 }
+
+export default memo(BadgeCarousel)

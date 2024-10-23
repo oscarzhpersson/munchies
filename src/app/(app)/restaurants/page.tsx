@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { FilterBadgeCarousel } from '@/components/filter-badge-carousel'
 import { RestaurantGrid } from '@/components/restaurant-grid'
@@ -14,10 +15,26 @@ import { fetchOverlayContent } from '@/services/fetchOverlayContent'
 
 import { formatNumberToDeliveryTimeRange } from '@/utils/formatNumberToDeliveryTimeRange'
 import { extractPriceRanges } from '@/utils/extractPriceRanges'
+import { extractFiltersFromUrlParam } from '@/utils/urlHelpers'
+import { filterRestaurants } from '@/utils/filterHelpers'
 
 import type { RestaurantWithDetails } from '@/interfaces/restaurant'
 
-const Page = async () => {
+interface PageProps {
+  searchParams: {
+    category?: string | string[]
+    deliveryTime?: string | string[]
+    priceRange?: string | string[]
+  }
+}
+
+export const revalidate = 300
+
+const Page = async ({ searchParams }: PageProps) => {
+  const categoriesFromUrl = extractFiltersFromUrlParam(searchParams.category)
+  const deliveryTimesFromUrl = extractFiltersFromUrlParam(searchParams.deliveryTime)
+  const priceRangesFromUrl = extractFiltersFromUrlParam(searchParams.priceRange)
+
   try {
     const [page, restaurantData, logoUrl, deliveryTimeRanges, overlayContent] = await Promise.all([
       fetchPageData('restaurants').catch((err) => {
@@ -49,8 +66,14 @@ const Page = async () => {
 
     const priceRanges = extractPriceRanges(enrichedRestaurants)
 
-    // TODO: Top filter bar and filters should be the same.
-    // TODO: Instead of using useState maybe use a context to store the active filters or use the URL.
+    const filteredRestaurants = filterRestaurants(
+      enrichedRestaurants,
+      categoriesFromUrl,
+      deliveryTimesFromUrl,
+      priceRangesFromUrl,
+    )
+
+    // TODO: Add accessibility functionality for perfect light house score.
     // TODO: Add proper error message display if necessary.
 
     // ? In type filter menu when hovering over the first element the entire container shrinks.
@@ -59,27 +82,28 @@ const Page = async () => {
       <div className="w-full max-w-screen-displayMax mx-auto mb-6">
         <AppOverlay className="md:hidden" overlay={overlayContent} />
         <header className="grid grid-cols-12 w-full gap-4 md:px-8 md:gap-0 lg:px-0">
-          <Image
-            src={logoUrl}
-            alt="logo"
-            width={275}
-            height={40}
+          <Link
+            aria-label="Munchies logo"
             className="col-span-12 mx-8 md:mx-0 mt-11 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
-          />
+            href="/restaurants"
+          >
+            <Image src={logoUrl} alt="logo" width={275} height={40} className="w-full h-full" />
+          </Link>
           <div className="col-span-12 md:col-span-3 lg:col-span-2 mb-4 mx-8 md:mx-0 md:mb-0">
             <FilterMenu
+              activeFilters={[...categoriesFromUrl, ...deliveryTimesFromUrl, ...priceRangesFromUrl]}
               filters={filters}
               deliveryTimeRanges={deliveryTimeRanges}
               priceRanges={priceRanges}
             />
           </div>
           <main className="col-span-12 md:col-span-9 lg:col-span-10 ml-8 md:ml-4">
-            <FilterBadgeCarousel activeId={null} filters={filters} />
+            <FilterBadgeCarousel activeFilters={categoriesFromUrl} filters={filters} />
             <div className="flex flex-col justify-between mr-8 md:mr-0">
               <h1 className="text-h1 md:text-display mt-6 mb-4 md:mt-11 md:mb-9">
                 {page.title || 'title'}
               </h1>
-              <RestaurantGrid restaurants={enrichedRestaurants} />
+              <RestaurantGrid restaurants={filteredRestaurants} />
             </div>
           </main>
         </header>

@@ -17,6 +17,7 @@ const Template: StoryFn<FilterMenuProps> = (args) => <FilterMenu {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
+  activeFilters: [],
   filters: [
     {
       id: '1',

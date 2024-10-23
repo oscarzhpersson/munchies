@@ -1,15 +1,31 @@
+'use client'
+
 import React from 'react'
 
 import { BadgeCarousel } from './badge-carousel'
 
+import { useRouter } from 'next/navigation'
+import { updateFilterInUrl } from '@/services/filterService'
+import { slugifyFilter } from '@/utils/urlHelpers'
+
 import type { Filter } from '@/interfaces/filter'
 
 export interface FilterBadgeCarouselProps {
-  activeId: string | null
+  activeFilters: string[]
   filters: Filter[]
 }
 
 export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
+  const router = useRouter()
+
+  const handleFilterUpdate = (filterToUpdate: string) => {
+    updateFilterInUrl(router, 'category', slugifyFilter(filterToUpdate))
+  }
+
+  const filterComparison = (filter: string) => {
+    return props.activeFilters.includes(slugifyFilter(filter))
+  }
+
   return (
     <div
       className="flex flex-row gap-2.5 overflow-x-auto flex-nowrap
@@ -23,7 +39,8 @@ export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
             url: filter.imageUrl,
             alt: filter.name + ' Image',
           }}
-          active={filter.id == props.activeId}
+          active={filterComparison(filter.name.toLowerCase())}
+          updateFilterSelection={handleFilterUpdate}
         />
       ))}
     </div>
