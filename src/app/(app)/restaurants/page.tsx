@@ -97,7 +97,7 @@ const Page = async ({ searchParams }: PageProps) => {
               priceRanges={priceRanges}
             />
           </div>
-          <main className="col-span-12 sm:col-span-10 lg:col-span-9 ml-8 sm:ml-4">
+          <main className="col-span-12 sm:col-span-10 lg:col-span-10 ml-8 sm:ml-4">
             <FilterBadgeCarousel activeFilters={categoriesFromUrl} filters={filters} />
             <div className="flex flex-col justify-between mr-8 sm:mr-0">
               <h1 className="text-h1 sm:text-display mt-6 mb-4 sm:mt-11 sm:mb-9">

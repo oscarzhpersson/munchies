@@ -6,7 +6,7 @@ export default {
       screens: {
         displayMax: '1440px',
         sm: '860px',
-        md: '930px',
+        md: '1000px',
         lg: '1200px',
       },
       fontSize: {
