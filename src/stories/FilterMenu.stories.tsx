@@ -4,6 +4,11 @@ import { FilterMenu, FilterMenuProps } from '@/components/filter-menu'
 export default {
   title: 'Components/FilterMenu',
   component: FilterMenu,
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
   decorators: [
     (Story) => (
       <div className="lg:w-[239px] lg:h-[764px]">

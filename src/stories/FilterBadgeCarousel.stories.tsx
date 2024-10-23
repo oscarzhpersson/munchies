@@ -12,6 +12,11 @@ import { FilterBadgeCarousel, FilterBadgeCarouselProps } from '@/components/filt
 export default {
   title: 'Components/FilterBadgeCarousel',
   component: FilterBadgeCarousel,
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
 } as Meta
 
 const Template: StoryFn<FilterBadgeCarouselProps> = (args) => <FilterBadgeCarousel {...args} />
