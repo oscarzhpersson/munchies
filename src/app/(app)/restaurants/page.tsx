@@ -79,17 +79,17 @@ const Page = async ({ searchParams }: PageProps) => {
     // ? In type filter menu when hovering over the first element the entire container shrinks.
 
     return (
-      <div className="w-full max-w-screen-displayMax mx-auto mb-6">
-        <AppOverlay className="md:hidden" overlay={overlayContent} />
-        <header className="grid grid-cols-12 w-full gap-4 md:px-8 md:gap-0 lg:px-0">
+      <div className="w-full max-w-screen-displayMax lg:mx-8 mb-6">
+        <AppOverlay className="sm:hidden" overlay={overlayContent} />
+        <header className="grid grid-cols-12 w-full gap-4 sm:px-8 sm:gap-0 lg:px-0">
           <Link
             aria-label="Munchies logo"
-            className="col-span-12 mx-8 md:mx-0 mt-11 min-w-[167px] w-[167px] h-10 md:w-[275px] md:h-[40px] md:my-11"
+            className="col-span-12 mx-8 sm:mx-0 mt-11 min-w-[167px] w-[167px] h-10 sm:w-[275px] sm:h-[40px] sm:my-11"
             href="/restaurants"
           >
             <Image src={logoUrl} alt="logo" width={275} height={40} className="w-full h-full" />
           </Link>
-          <div className="col-span-12 md:col-span-3 lg:col-span-2 mb-4 mx-8 md:mx-0 md:mb-0">
+          <div className="col-span-12 sm:col-span-2 lg:col-span-2 mb-4 mx-8 sm:mx-0 sm:mb-0">
             <FilterMenu
               activeFilters={[...categoriesFromUrl, ...deliveryTimesFromUrl, ...priceRangesFromUrl]}
               filters={filters}
@@ -97,10 +97,10 @@ const Page = async ({ searchParams }: PageProps) => {
               priceRanges={priceRanges}
             />
           </div>
-          <main className="col-span-12 md:col-span-9 lg:col-span-10 ml-8 md:ml-4">
+          <main className="col-span-12 sm:col-span-10 lg:col-span-9 ml-8 sm:ml-4">
             <FilterBadgeCarousel activeFilters={categoriesFromUrl} filters={filters} />
-            <div className="flex flex-col justify-between mr-8 md:mr-0">
-              <h1 className="text-h1 md:text-display mt-6 mb-4 md:mt-11 md:mb-9">
+            <div className="flex flex-col justify-between mr-8 sm:mr-0">
+              <h1 className="text-h1 sm:text-display mt-6 mb-4 sm:mt-11 sm:mb-9">
                 {page.title || 'title'}
               </h1>
               <RestaurantGrid restaurants={filteredRestaurants} />
