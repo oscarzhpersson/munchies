@@ -28,6 +28,11 @@ export function RestaurantGrid(props: RestaurantGridProps) {
 
           return <RestaurantCard key={index} {...restaurantCardProps} />
         })}
+        {props.restaurants.length === 0 && (
+          <div className="w-full h-full text-title text-black">
+            No restaurants matching selected criteria
+          </div>
+        )}
       </div>
     </div>
   )
