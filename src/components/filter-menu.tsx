@@ -59,11 +59,11 @@ export function FilterMenu(props: FilterMenuProps) {
 
   return (
     <div
-      className="w-full md:bg-white md:rounded-md md:border-0.6
-                    md:h-full md:border-stroke md:munchies-shadow md:p-6"
+      className="w-full sm:bg-white sm:rounded-md sm:border-0.6 sm:max-w-60 sm:min-w-36
+                    sm:h-full sm:border-stroke sm:munchies-shadow sm:p-6"
     >
-      <h3 className="text-h1 hidden md:block">Filter</h3>
-      <div className="hidden md:block">
+      <h3 className="text-h1 hidden sm:block">Filter</h3>
+      <div className="hidden sm:block">
         <p className="text-subtitle font-semibold opacity-40 mb-4 mt-8">FOOD CATEGORY</p>
         <div className="flex flex-col flex-wrap my-4 gap-2">
           {props.filters.map((filter, index) => (
@@ -81,7 +81,7 @@ export function FilterMenu(props: FilterMenuProps) {
         <p className="text-subtitle font-semibold opacity-40 mb-2 lg:mb-4 lg:mt-8">DELIVERY TIME</p>
         <div
           className="flex flex-row gap-2 overflow-x-scroll flex-nowrap whitespace-nowrap snap-x
-                        snap-proximity hide-scrollbar md:flex-wrap md:overflow-visible md:whitespace-normal"
+                        snap-proximity hide-scrollbar sm:flex-wrap sm:overflow-visible sm:whitespace-normal"
         >
           {props.deliveryTimeRanges?.ranges?.map((deliveryTimeRange, index) => (
             <FilterCard
@@ -103,7 +103,7 @@ export function FilterMenu(props: FilterMenuProps) {
           )}
         </div>
       </div>
-      <div className="hidden md:block">
+      <div className="hidden sm:block">
         <p className="text-subtitle font-semibold opacity-40 mb-4 mt-8">PRICE RANGE</p>
         <div className="flex flex-row flex-wrap my-4 gap-2">
           {props.priceRanges.map((priceRange, index) => (

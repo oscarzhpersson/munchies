@@ -10,7 +10,7 @@ export interface RestaurantGridProps {
 export function RestaurantGrid(props: RestaurantGridProps) {
   return (
     <div className="md:flex md:justify-start md:w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="flex flex-row flex-wrap gap-4">
         {props.restaurants.map((restaurant, index) => {
           const restaurantCardProps: RestaurantCardProps = {
             id: restaurant.id,
