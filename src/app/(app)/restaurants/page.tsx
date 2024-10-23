@@ -18,7 +18,7 @@ import { extractPriceRanges } from '@/utils/extractPriceRanges'
 import { extractFiltersFromUrlParam } from '@/utils/urlHelpers'
 import { filterRestaurants } from '@/utils/filterHelpers'
 
-import type { RestaurantWithDetails } from '@/interfaces/restaurant'
+import type { Restaurant, RestaurantWithDetails } from '@/interfaces/restaurant'
 
 interface PageProps {
   searchParams: {
@@ -40,9 +40,11 @@ const Page = async ({ searchParams }: PageProps) => {
       fetchPageData('restaurants').catch((err) => {
         throw new Error('Error fetching page data:', err)
       }),
-      fetchRestaurantData().catch((err) => {
-        throw new Error('Error fetching restaurant data:', err)
-      }),
+      fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/restaurants`)
+        .then((res) => res.json())
+        .catch((err) => {
+          throw new Error('Error fetching restaurant data from API route:', err)
+        }),
       fetchLogo().catch((err) => {
         throw new Error('Error fetching logo:', err)
       }),
@@ -56,13 +58,15 @@ const Page = async ({ searchParams }: PageProps) => {
 
     const { restaurantWithDetails: restaurants, filters } = restaurantData
 
-    const enrichedRestaurants: RestaurantWithDetails[] = restaurants.map((restaurant) => ({
-      ...restaurant,
-      deliveryTimeLabel: formatNumberToDeliveryTimeRange(
-        restaurant.deliveryTimeInMinutes,
-        deliveryTimeRanges,
-      ),
-    }))
+    const enrichedRestaurants: RestaurantWithDetails[] = restaurants.map(
+      (restaurant: Restaurant) => ({
+        ...restaurant,
+        deliveryTimeLabel: formatNumberToDeliveryTimeRange(
+          restaurant.deliveryTimeInMinutes,
+          deliveryTimeRanges,
+        ),
+      }),
+    )
 
     const priceRanges = extractPriceRanges(enrichedRestaurants)
 
