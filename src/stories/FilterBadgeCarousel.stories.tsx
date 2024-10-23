@@ -18,6 +18,7 @@ const Template: StoryFn<FilterBadgeCarouselProps> = (args) => <FilterBadgeCarous
 
 export const Default = Template.bind({})
 Default.args = {
+  activeFilters: [],
   filters: [
     {
       id: '1',

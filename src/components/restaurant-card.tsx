@@ -17,7 +17,7 @@ export interface RestaurantCardProps {
   }
 }
 
-export function RestaurantCard(props: RestaurantCardProps) {
+function RestaurantCard(props: RestaurantCardProps) {
   return (
     <div
       className="relative w-full col-span-1 md:w-[20.438rem] h-[12.625rem] bg-white rounded-lg border-0.6
@@ -75,9 +75,12 @@ export function RestaurantCard(props: RestaurantCardProps) {
         alt={props.image.alt}
         width={140}
         height={140}
+        priority
         className={`absolute top-[-1.875rem] right-[-1.875rem]
                     object-cover ${props.open ? 'opacity-100' : 'opacity-20'}`}
       />
     </div>
   )
 }
+
+export default React.memo(RestaurantCard)

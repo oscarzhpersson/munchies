@@ -28,6 +28,8 @@ interface PageProps {
   }
 }
 
+export const revalidate = 300
+
 const Page = async ({ searchParams }: PageProps) => {
   const categoriesFromUrl = extractFiltersFromUrlParam(searchParams.category)
   const deliveryTimesFromUrl = extractFiltersFromUrlParam(searchParams.deliveryTime)
@@ -54,14 +56,7 @@ const Page = async ({ searchParams }: PageProps) => {
 
     const { restaurantWithDetails: restaurants, filters } = restaurantData
 
-    const filteredRestaurants = filterRestaurants(
-      restaurants,
-      categoriesFromUrl,
-      deliveryTimesFromUrl,
-      priceRangesFromUrl,
-    )
-
-    const enrichedRestaurants: RestaurantWithDetails[] = filteredRestaurants.map((restaurant) => ({
+    const enrichedRestaurants: RestaurantWithDetails[] = restaurants.map((restaurant) => ({
       ...restaurant,
       deliveryTimeLabel: formatNumberToDeliveryTimeRange(
         restaurant.deliveryTimeInMinutes,
@@ -70,6 +65,13 @@ const Page = async ({ searchParams }: PageProps) => {
     }))
 
     const priceRanges = extractPriceRanges(enrichedRestaurants)
+
+    const filteredRestaurants = filterRestaurants(
+      enrichedRestaurants,
+      categoriesFromUrl,
+      deliveryTimesFromUrl,
+      priceRangesFromUrl,
+    )
 
     // TODO: Add accessibility functionality for perfect light house score.
     // TODO: Add proper error message display if necessary.
@@ -89,18 +91,19 @@ const Page = async ({ searchParams }: PageProps) => {
           </Link>
           <div className="col-span-12 md:col-span-3 lg:col-span-2 mb-4 mx-8 md:mx-0 md:mb-0">
             <FilterMenu
+              activeFilters={[...categoriesFromUrl, ...deliveryTimesFromUrl, ...priceRangesFromUrl]}
               filters={filters}
               deliveryTimeRanges={deliveryTimeRanges}
               priceRanges={priceRanges}
             />
           </div>
           <main className="col-span-12 md:col-span-9 lg:col-span-10 ml-8 md:ml-4">
-            <FilterBadgeCarousel filters={filters} />
+            <FilterBadgeCarousel activeFilters={categoriesFromUrl} filters={filters} />
             <div className="flex flex-col justify-between mr-8 md:mr-0">
               <h1 className="text-h1 md:text-display mt-6 mb-4 md:mt-11 md:mb-9">
                 {page.title || 'title'}
               </h1>
-              <RestaurantGrid restaurants={enrichedRestaurants} />
+              <RestaurantGrid restaurants={filteredRestaurants} />
             </div>
           </main>
         </header>

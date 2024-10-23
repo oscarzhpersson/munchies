@@ -2,7 +2,7 @@
 
 import React, { memo } from 'react'
 
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
 import { slugifyFilter } from '@/utils/urlHelpers'
 
@@ -13,6 +13,7 @@ export interface FilterMenuProps {
   filters: Filter[]
   deliveryTimeRanges: DeliveryTime | null
   priceRanges: string[]
+  activeFilters: string[]
 }
 
 const FilterCard = memo(
@@ -48,17 +49,12 @@ const FilterCard = memo(
 export function FilterMenu(props: FilterMenuProps) {
   const router = useRouter()
 
-  const searchParams = useSearchParams()
-  const filterParam = searchParams.get('filter')
-  const filtersFromUrl = filterParam ? filterParam.split(',') : []
-  const filtersFromUrlSlugified = filtersFromUrl.map(slugifyFilter)
-
   const handleFilterUpdate = (filterType: string, filterToUpdate: string) => {
     updateFilterInUrl(router, filterType, slugifyFilter(filterToUpdate))
   }
 
   const filterComparison = (filter: string) => {
-    return filtersFromUrlSlugified.includes(slugifyFilter(filter))
+    return props.activeFilters.includes(slugifyFilter(filter))
   }
 
   return (
@@ -113,7 +109,7 @@ export function FilterMenu(props: FilterMenuProps) {
           {props.priceRanges.map((priceRange, index) => (
             <FilterCard
               key={index}
-              filterType="price"
+              filterType="priceRange"
               updateFilterSelection={handleFilterUpdate}
               filter={priceRange}
               active={filterComparison(priceRange)}

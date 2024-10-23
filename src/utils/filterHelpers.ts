@@ -1,4 +1,5 @@
 import { slugifyFilter } from '@/utils/urlHelpers'
+
 import type { RestaurantWithDetails } from '@/interfaces/restaurant'
 
 /**
@@ -17,6 +18,7 @@ export const filterRestaurants = (
   priceRangesFromUrl: string[],
 ): RestaurantWithDetails[] => {
   const priceRangesSet = new Set(priceRangesFromUrl)
+  const deliveryTimeLabelSet = new Set(deliveryTimesFromUrl)
 
   return restaurants.filter((restaurant) => {
     const categoryMatch =
@@ -30,7 +32,7 @@ export const filterRestaurants = (
 
     const deliveryTimeMatch =
       deliveryTimesFromUrl.length > 0 && restaurant.deliveryTimeLabel
-        ? deliveryTimesFromUrl.includes(slugifyFilter(restaurant.deliveryTimeLabel))
+        ? deliveryTimeLabelSet.has(slugifyFilter(restaurant.deliveryTimeLabel))
         : true
 
     const priceRangeMatch =

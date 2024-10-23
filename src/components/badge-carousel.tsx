@@ -18,7 +18,7 @@ export function BadgeCarousel({ title, image, active, updateFilterSelection }: B
       className={`flex flex-row justify-between items-center flex-shrink-0 snap-start
                 w-40 h-20 rounded-lg relative border-0.6 border-stroke munchies-shadow hover:scale-95
                 transition-transform will-change-transform duration-50 focus:border-1 ease-in-out
-                ${active ? 'bg-green text-white' : 'bg-white text-black'}`}
+                ${active ? 'bg-green text-offWhite shadow-inner' : 'bg-white text-black'}`}
       style={{ transformOrigin: 'center' }}
       aria-label={'Filter toggle - ' + title}
     >
