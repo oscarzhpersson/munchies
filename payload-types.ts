@@ -25,6 +25,7 @@ export interface Config {
     'site-settings': SiteSetting;
     'delivery-time-ranges': DeliveryTimeRange;
     'overlay-content': OverlayContent;
+    'seo-properties': SeoProperty;
   };
   locale: null;
   user: User & {
@@ -196,6 +197,16 @@ export interface OverlayContent {
   title: string;
   description: string;
   buttonText: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-properties".
+ */
+export interface SeoProperty {
+  id: number;
+  metaDescription: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
