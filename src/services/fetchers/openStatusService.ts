@@ -1,6 +1,6 @@
 import { fetchWithErrorHandling } from './apiClient'
 
-import type { OpenStatus } from '@/interfaces/open-status'
+import type { OpenStatus } from '@/interfaces/api/open-status'
 
 /** Base URL for the API endpoints. */
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL

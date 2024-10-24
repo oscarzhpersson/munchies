@@ -2,8 +2,8 @@ import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 
-import type { Logo } from '@/interfaces/logo'
-import type { Overlay } from '@/interfaces/overlay'
+import type { Logo } from '@/interfaces/cms/logo'
+import type { Overlay } from '@/interfaces/cms/overlay'
 
 /**
  * Fetches the overlay content from the Payload CMS.

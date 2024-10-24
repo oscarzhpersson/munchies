@@ -1,4 +1,4 @@
-import type { Filter, ApiFilter } from '@/interfaces/filter'
+import type { Filter, ApiFilter } from '@/interfaces/api/filter'
 
 /**
  * Transforms API filter data into the domain filter model.

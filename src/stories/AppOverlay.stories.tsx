@@ -1,7 +1,7 @@
 import Logo from './assets/logos/logo_white.svg'
 
 import { Meta, StoryFn } from '@storybook/react'
-import { AppOverlay, AppOverlayProps } from '@/components/app-overlay'
+import { AppOverlay, AppOverlayProps } from '@/components/app/app-overlay'
 
 export default {
   title: 'Site-wide/AppOverlay',

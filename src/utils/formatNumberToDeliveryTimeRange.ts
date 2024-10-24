@@ -1,4 +1,4 @@
-import type { DeliveryTime } from '@/interfaces/delivery-time'
+import type { DeliveryTime } from '@/interfaces/cms/delivery-time'
 
 /**
  * Formats a numeric value into a delivery time range label based on predefined ranges.

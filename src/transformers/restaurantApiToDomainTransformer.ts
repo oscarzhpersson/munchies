@@ -1,4 +1,4 @@
-import type { ApiRestaurant, Restaurant } from '@/interfaces/restaurant'
+import type { ApiRestaurant, Restaurant } from '@/interfaces/api/restaurant'
 
 /**
  * Transforms API restaurant data into the domain restaurant model.

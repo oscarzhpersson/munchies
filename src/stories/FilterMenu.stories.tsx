@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react'
-import { FilterMenu, FilterMenuProps } from '@/components/filter-menu'
+import { FilterMenu, FilterMenuProps } from '@/components/filter-menu/filter-menu'
 
 export default {
   title: 'Components/FilterMenu',

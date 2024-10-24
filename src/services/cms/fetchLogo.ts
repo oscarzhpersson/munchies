@@ -2,7 +2,7 @@ import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 
-import type { Logo } from '@/interfaces/logo'
+import type { Logo } from '@/interfaces/cms/logo'
 
 /**
  * Fetches the logo URL from the site settings.

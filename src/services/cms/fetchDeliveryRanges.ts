@@ -1,6 +1,6 @@
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 
-import type { DeliveryTime } from '@/interfaces/delivery-time'
+import type { DeliveryTime } from '@/interfaces/cms/delivery-time'
 
 import config from '@payload-config'
 

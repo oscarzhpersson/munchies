@@ -1,6 +1,6 @@
 import { fetchWithErrorHandling } from './apiClient'
 
-import type { PriceRange } from '@/interfaces/price-range'
+import type { PriceRange } from '@/interfaces/api/price-range'
 
 /** Base URL for the API endpoints. */
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL

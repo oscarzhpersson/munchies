@@ -1,11 +1,11 @@
 import { transformRestaurantDataApiToDomain } from '@/transformers/restaurantApiToDomainTransformer'
 import { fetchWithErrorHandling } from './apiClient'
-import { fetchAndTransformFilters } from '@/services/filterRetrievalService'
-import { fetchOpenStatus } from '@/services/openStatusService'
-import { fetchPriceRange } from '@/services/priceRangeService'
+import { fetchAndTransformFilters } from '@/services/fetchers/filterRetrievalService'
+import { fetchOpenStatus } from '@/services/fetchers/openStatusService'
+import { fetchPriceRange } from '@/services/fetchers/priceRangeService'
 
-import type { RestaurantWithDetails, ApiRestaurant, Restaurant } from '@/interfaces/restaurant'
-import type { Filter } from '@/interfaces/filter'
+import type { RestaurantWithDetails, ApiRestaurant, Restaurant } from '@/interfaces/api/restaurant'
+import type { Filter } from '@/interfaces/api/filter'
 
 /** Base URL for the API endpoints. */
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL

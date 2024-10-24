@@ -7,7 +7,10 @@ import BurritoIcon from './assets/icons/burrito.png'
 import BreakfastIcon from './assets/icons/breakfast.png'
 
 import { Meta, StoryFn } from '@storybook/react'
-import { FilterBadgeCarousel, FilterBadgeCarouselProps } from '@/components/filter-badge-carousel'
+import {
+  FilterBadgeCarousel,
+  FilterBadgeCarouselProps,
+} from '@/components/filter-menu/filter-badge-carousel'
 
 export default {
   title: 'Components/FilterBadgeCarousel',

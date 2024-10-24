@@ -1,4 +1,4 @@
-import type { RestaurantWithDetails } from '@/interfaces/restaurant'
+import type { RestaurantWithDetails } from '@/interfaces/api/restaurant'
 
 /**
  * Extracts a sorted list of unique price ranges from an array of restaurants.

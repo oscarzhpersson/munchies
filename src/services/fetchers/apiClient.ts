@@ -1,4 +1,4 @@
-import type { ApiError } from '@/interfaces/api-error'
+import type { ApiError } from '@/interfaces/api/api-error'
 
 /**
  * Fetches data from the given URL with error handling.
