@@ -29,6 +29,8 @@
     "@payloadcms/richtext-lexical": "3.0.0-beta.108",
     "@payloadcms/richtext-slate": "3.0.0-beta.108",
     "@payloadcms/ui": "3.0.0-beta.108",
+    "@vercel/blob": "^0.25.1",
+    "@vercel/postgres": "^0.10.0",
     "autoprefixer": "^10.4.20",
     "babel-plugin-react-compiler": "0.0.0-experimental-48eb8f4-20240822",
     "cross-env": "^7.0.3",
