@@ -1,4 +1,4 @@
-import { fetchRestaurantData } from '@/services/restaurantService'
+import { fetchRestaurantData } from '@/services/fetchers/restaurantService'
 
 /**
  * API route handler to fetch restaurant data

@@ -2,23 +2,22 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { FilterBadgeCarousel } from '@/components/filter-badge-carousel'
-import { RestaurantGrid } from '@/components/restaurant-grid'
-import { FilterMenu } from '@/components/filter-menu'
-import { AppOverlay } from '@/components/app-overlay'
+import { FilterBadgeCarousel } from '@/components/filter-menu/filter-badge-carousel'
+import { RestaurantGrid } from '@/components/restaurant-grid/restaurant-grid'
+import { FilterMenu } from '@/components/filter-menu/filter-menu'
+import { AppOverlay } from '@/components/app/app-overlay'
 
-import { fetchPageData } from '@/services/fetchPageData'
-import { fetchRestaurantData } from '@/services/restaurantService'
-import { fetchLogo } from '@/services/fetchLogo'
-import { fetchDeliveryTimeRanges } from '@/services/fetchDeliveryRanges'
-import { fetchOverlayContent } from '@/services/fetchOverlayContent'
+import { fetchPageData } from '@/services/cms/fetchPageData'
+import { fetchLogo } from '@/services/cms/fetchLogo'
+import { fetchDeliveryTimeRanges } from '@/services/cms/fetchDeliveryRanges'
+import { fetchOverlayContent } from '@/services/cms/fetchOverlayContent'
 
 import { formatNumberToDeliveryTimeRange } from '@/utils/formatNumberToDeliveryTimeRange'
 import { extractPriceRanges } from '@/utils/extractPriceRanges'
 import { extractFiltersFromUrlParam } from '@/utils/urlHelpers'
 import { filterRestaurants } from '@/utils/filterHelpers'
 
-import type { Restaurant, RestaurantWithDetails } from '@/interfaces/restaurant'
+import type { Restaurant, RestaurantWithDetails } from '@/interfaces/api/restaurant'
 
 interface PageProps {
   searchParams: {
@@ -77,7 +76,6 @@ const Page = async ({ searchParams }: PageProps) => {
       priceRangesFromUrl,
     )
 
-    // TODO: Add accessibility functionality for perfect light house score.
     // TODO: Add proper error message display if necessary.
 
     // ? In type filter menu when hovering over the first element the entire container shrinks.

@@ -1,7 +1,7 @@
 import TacoIcon from './assets/icons/taco.png'
 
 import { Meta, StoryFn } from '@storybook/react'
-import RestaurantCard, { RestaurantCardProps } from '@/components/restaurant-card'
+import RestaurantCard, { RestaurantCardProps } from '@/components/restaurant-grid/restaurant-card'
 
 export default {
   title: 'Components/RestaurantCard',

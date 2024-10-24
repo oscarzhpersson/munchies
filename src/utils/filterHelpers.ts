@@ -1,6 +1,6 @@
 import { slugifyFilter } from '@/utils/urlHelpers'
 
-import type { RestaurantWithDetails } from '@/interfaces/restaurant'
+import type { RestaurantWithDetails } from '@/interfaces/api/restaurant'
 
 /**
  * Filters restaurants based on categories, delivery times, and price ranges.

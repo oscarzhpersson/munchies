@@ -7,7 +7,7 @@ import PizzaIcon from './assets/icons/pizza.png'
 import FriesIcon from './assets/icons/fries.png'
 
 import { Meta, StoryFn } from '@storybook/react'
-import { RestaurantGrid, RestaurantGridProps } from '@/components/restaurant-grid'
+import { RestaurantGrid, RestaurantGridProps } from '@/components/restaurant-grid/restaurant-grid'
 
 export default {
   title: 'Components/RestaurantGrid',

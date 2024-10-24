@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
 import { slugifyFilter } from '@/utils/urlHelpers'
 
-import type { Filter } from '@/interfaces/filter'
-import type { DeliveryTime } from '@/interfaces/delivery-time'
+import type { Filter } from '@/interfaces/api/filter'
+import type { DeliveryTime } from '@/interfaces/cms/delivery-time'
 
 export interface FilterMenuProps {
   filters: Filter[]

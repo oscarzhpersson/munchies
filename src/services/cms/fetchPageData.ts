@@ -1,5 +1,5 @@
 import { getPayloadHMR } from '@payloadcms/next/utilities'
-import { Page } from '@/interfaces/page'
+import { Page } from '@/interfaces/cms/page'
 
 import config from '@payload-config'
 

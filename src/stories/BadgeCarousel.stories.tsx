@@ -1,7 +1,7 @@
 import PizzaIcon from './assets/icons/pizza.png'
 
 import { Meta, StoryFn } from '@storybook/react'
-import { BadgeCarousel, BadgeCarouselProps } from '@/components/badge-carousel'
+import { BadgeCarousel, BadgeCarouselProps } from '@/components/badge-carousel/badge-carousel'
 
 export default {
   title: 'Components/BadgeCarousel',

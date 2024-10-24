@@ -1,7 +1,7 @@
 import React from 'react'
 
 import RestaurantCard, { RestaurantCardProps } from './restaurant-card'
-import { RestaurantWithDetails } from '@/interfaces/restaurant'
+import { RestaurantWithDetails } from '@/interfaces/api/restaurant'
 
 export interface RestaurantGridProps {
   restaurants: RestaurantWithDetails[]

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fetchMetaDescription } from '@/services/fetchSeoProperties'
+import { fetchMetaDescription } from '@/services/cms/fetchSeoProperties'
 
 import './globals.css'
 

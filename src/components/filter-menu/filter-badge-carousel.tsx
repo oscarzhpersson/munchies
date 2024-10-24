@@ -2,13 +2,13 @@
 
 import React from 'react'
 
-import { BadgeCarousel } from './badge-carousel'
+import { BadgeCarousel } from '../badge-carousel/badge-carousel'
 
 import { useRouter } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
 import { slugifyFilter } from '@/utils/urlHelpers'
 
-import type { Filter } from '@/interfaces/filter'
+import type { Filter } from '@/interfaces/api/filter'
 
 export interface FilterBadgeCarouselProps {
   activeFilters: string[]

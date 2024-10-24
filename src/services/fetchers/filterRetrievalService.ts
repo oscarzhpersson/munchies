@@ -1,7 +1,7 @@
 import { fetchWithErrorHandling } from './apiClient'
 import { transformFilterDataApiToDomain } from '@/transformers/filterApiToDomainTransformer'
 
-import type { Filter, ApiFilter } from '@/interfaces/filter'
+import type { Filter, ApiFilter } from '@/interfaces/api/filter'
 
 /** Base URL for the API endpoints. */
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-import type { Overlay } from '@/interfaces/overlay'
+import type { Overlay } from '@/interfaces/cms/overlay'
 
 export interface AppOverlayProps {
   className?: string
