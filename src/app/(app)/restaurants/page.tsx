@@ -17,14 +17,6 @@ import { extractPriceRanges } from '@/utils/extractPriceRanges'
 
 import type { Restaurant, RestaurantWithDetails } from '@/interfaces/api/restaurant'
 
-interface PageProps {
-  searchParams: {
-    category?: string | string[]
-    deliveryTime?: string | string[]
-    priceRange?: string | string[]
-  }
-}
-
 export const revalidate = 300
 
 const Page = async () => {
