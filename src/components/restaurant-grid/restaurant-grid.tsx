@@ -1,32 +1,23 @@
-'use client'
-
 import React from 'react'
 
-import { useSearchParams } from 'next/navigation'
 import RestaurantCard, { RestaurantCardProps } from './restaurant-card'
 import { RestaurantWithDetails } from '@/interfaces/api/restaurant'
 import { filterRestaurants } from '@/utils/filterHelpers'
-import { extractFiltersFromUrlParam } from '@/utils/urlHelpers'
 
 export interface RestaurantGridProps {
   restaurants: RestaurantWithDetails[]
+  categories?: string[]
+  deliveryTimes?: string[]
+  priceRanges?: string[]
 }
 
-export function RestaurantGrid(props: RestaurantGridProps) {
-  const searchParams = useSearchParams()
-
-  const categoriesFromUrl = extractFiltersFromUrlParam(searchParams.get('category')?.split(','))
-  const deliveryTimesFromUrl = extractFiltersFromUrlParam(
-    searchParams.get('deliveryTime')?.split(','),
-  )
-  const priceRangesFromUrl = extractFiltersFromUrlParam(searchParams.get('priceRange')?.split(','))
-
-  const filteredRestaurants = filterRestaurants(
-    props.restaurants,
-    categoriesFromUrl,
-    deliveryTimesFromUrl,
-    priceRangesFromUrl,
-  )
+export function RestaurantGrid({
+  restaurants,
+  categories = [],
+  deliveryTimes = [],
+  priceRanges = [],
+}: RestaurantGridProps) {
+  const filteredRestaurants = filterRestaurants(restaurants, categories, deliveryTimes, priceRanges)
 
   return (
     <div className="md:flex md:justify-start md:w-full">

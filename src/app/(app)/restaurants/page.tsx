@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { FilterBadgeCarousel } from '@/components/filter-menu/filter-badge-carousel'
-import { RestaurantGrid } from '@/components/restaurant-grid/restaurant-grid'
+import { RestaurantGridWrapper } from '@/components/restaurant-grid/restaurant-grid-wrapper'
 import { FilterMenu } from '@/components/filter-menu/filter-menu'
 import { AppOverlay } from '@/components/app/app-overlay'
 
@@ -80,7 +80,7 @@ const Page = async () => {
                 <h1 className="text-h1 sm:text-display mt-6 mb-4 sm:mt-11 sm:mb-9">
                   {page.title || 'title'}
                 </h1>
-                <RestaurantGrid restaurants={enrichedRestaurants} />
+                <RestaurantGridWrapper restaurants={enrichedRestaurants} />
               </div>
             </main>
           </header>
