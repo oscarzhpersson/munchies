@@ -46,13 +46,6 @@ export default buildConfig({
         }),
       ]
     : [],
-  admin: {
-    autoLogin: {
-      email: 'dev@payloadcms.com',
-      password: 'test',
-      prefillOnly: true,
-    },
-  },
   async onInit(payload) {
     const existingUsers = await payload.find({
       collection: 'users',
@@ -64,7 +57,7 @@ export default buildConfig({
         collection: 'users',
         data: {
           email: 'dev@payloadcms.com',
-          password: 'test',
+          password: 'default',
         },
       })
     }
