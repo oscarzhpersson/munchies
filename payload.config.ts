@@ -4,6 +4,7 @@ import sharp from 'sharp'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { en } from 'payload/i18n/en'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 
@@ -35,7 +36,16 @@ export default buildConfig({
   i18n: {
     supportedLanguages: { en },
   },
-
+  plugins: process.env.BLOB_READ_WRITE_TOKEN
+    ? [
+        vercelBlobStorage({
+          collections: {
+            [Media.slug]: true,
+          },
+          token: process.env.BLOB_READ_WRITE_TOKEN || '',
+        }),
+      ]
+    : [],
   admin: {
     autoLogin: {
       email: 'dev@payloadcms.com',
