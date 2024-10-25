@@ -29,7 +29,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.POSTGRES_URI || '',
+      connectionString: process.env.POSTGRES_URL || '',
     },
   }),
 
