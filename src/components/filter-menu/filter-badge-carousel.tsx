@@ -1,32 +1,46 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { BadgeCarousel } from '../badge-carousel/badge-carousel'
 
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
 import { slugifyFilter } from '@/utils/urlHelpers'
 
 import type { Filter } from '@/interfaces/api/filter'
 
 export interface FilterBadgeCarouselProps {
-  activeFilters: string[]
   filters: Filter[]
 }
 
 export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
-  const router = useRouter()
+  const [activeFilters, setActiveFilters] = useState<Set<string>>(new Set())
+
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   const handleFilterUpdate = (filterToUpdate: string) => {
-    updateFilterInUrl(router, pathname, searchParams, 'category', slugifyFilter(filterToUpdate))
+    const slugifiedFilter = slugifyFilter(filterToUpdate)
+    updateFilterInUrl(pathname, searchParams, 'category', slugifiedFilter)
+
+    setActiveFilters((prevFilters) => {
+      const newFilters = new Set(prevFilters)
+      if (newFilters.has(slugifiedFilter)) {
+        newFilters.delete(slugifiedFilter)
+      } else {
+        newFilters.add(slugifiedFilter)
+      }
+      return newFilters
+    })
   }
 
-  const filterComparison = (filter: string) => {
-    return props.activeFilters.includes(slugifyFilter(filter))
-  }
+  const isActive = (filter: string) => activeFilters.has(slugifyFilter(filter))
+
+  useEffect(() => {
+    const categoryFilters = searchParams.get('category')?.split(',') || []
+    setActiveFilters(new Set(categoryFilters))
+  }, [searchParams])
 
   return (
     <div
@@ -41,7 +55,7 @@ export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
             url: filter.imageUrl,
             alt: filter.name + ' Image',
           }}
-          active={filterComparison(filter.name.toLowerCase())}
+          active={isActive(filter.name)}
           updateFilterSelection={handleFilterUpdate}
         />
       ))}

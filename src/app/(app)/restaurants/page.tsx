@@ -14,8 +14,6 @@ import { fetchOverlayContent } from '@/services/cms/fetchOverlayContent'
 
 import { formatNumberToDeliveryTimeRange } from '@/utils/formatNumberToDeliveryTimeRange'
 import { extractPriceRanges } from '@/utils/extractPriceRanges'
-import { extractFiltersFromUrlParam } from '@/utils/urlHelpers'
-import { filterRestaurants } from '@/utils/filterHelpers'
 
 import type { Restaurant, RestaurantWithDetails } from '@/interfaces/api/restaurant'
 
@@ -29,11 +27,7 @@ interface PageProps {
 
 export const revalidate = 300
 
-const Page = async ({ searchParams }: PageProps) => {
-  const categoriesFromUrl = extractFiltersFromUrlParam(searchParams.category)
-  const deliveryTimesFromUrl = extractFiltersFromUrlParam(searchParams.deliveryTime)
-  const priceRangesFromUrl = extractFiltersFromUrlParam(searchParams.priceRange)
-
+const Page = async () => {
   try {
     const [page, restaurantData, logoUrl, deliveryTimeRanges, overlayContent] = await Promise.all([
       fetchPageData('restaurants').catch((err) => {
@@ -69,17 +63,6 @@ const Page = async ({ searchParams }: PageProps) => {
 
     const priceRanges = extractPriceRanges(enrichedRestaurants)
 
-    const filteredRestaurants = filterRestaurants(
-      enrichedRestaurants,
-      categoriesFromUrl,
-      deliveryTimesFromUrl,
-      priceRangesFromUrl,
-    )
-
-    // TODO: Add proper error message display if necessary.
-
-    // ? In type filter menu when hovering over the first element the entire container shrinks.
-
     return (
       <div className="w-full max-w-screen-displayMax lg:mx-8 mb-6">
         <AppOverlay className="sm:hidden" overlay={overlayContent} />
@@ -93,19 +76,18 @@ const Page = async ({ searchParams }: PageProps) => {
           </Link>
           <div className="col-span-12 sm:col-span-2 lg:col-span-2 mb-4 mx-8 sm:mx-0 sm:mb-0">
             <FilterMenu
-              activeFilters={[...categoriesFromUrl, ...deliveryTimesFromUrl, ...priceRangesFromUrl]}
               filters={filters}
               deliveryTimeRanges={deliveryTimeRanges}
               priceRanges={priceRanges}
             />
           </div>
           <main className="col-span-12 sm:col-span-10 lg:col-span-10 ml-8 sm:ml-4">
-            <FilterBadgeCarousel activeFilters={categoriesFromUrl} filters={filters} />
+            <FilterBadgeCarousel filters={filters} />
             <div className="flex flex-col justify-between mr-8 sm:mr-0">
               <h1 className="text-h1 sm:text-display mt-6 mb-4 sm:mt-11 sm:mb-9">
                 {page.title || 'title'}
               </h1>
-              <RestaurantGrid restaurants={filteredRestaurants} />
+              <RestaurantGrid restaurants={enrichedRestaurants} />
             </div>
           </main>
         </header>

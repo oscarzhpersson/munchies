@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
 import { slugifyFilter } from '@/utils/urlHelpers'
 
@@ -13,7 +13,6 @@ export interface FilterMenuProps {
   filters: Filter[]
   deliveryTimeRanges: DeliveryTime | null
   priceRanges: string[]
-  activeFilters: string[]
 }
 
 const FilterCard = ({
@@ -42,17 +41,35 @@ const FilterCard = ({
 }
 
 export function FilterMenu(props: FilterMenuProps) {
-  const router = useRouter()
+  const [activeFilters, setActiveFilters] = useState<Set<string>>(new Set())
+
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   const handleFilterUpdate = (filterType: string, filterToUpdate: string) => {
-    updateFilterInUrl(router, pathname, searchParams, filterType, slugifyFilter(filterToUpdate))
+    updateFilterInUrl(pathname, searchParams, filterType, slugifyFilter(filterToUpdate))
+
+    setActiveFilters((prevFilters) => {
+      const newFilters = new Set(prevFilters)
+      const slugifiedFilter = slugifyFilter(filterToUpdate)
+      if (newFilters.has(slugifiedFilter)) {
+        newFilters.delete(slugifiedFilter)
+      } else {
+        newFilters.add(slugifiedFilter)
+      }
+      return newFilters
+    })
   }
 
-  const filterComparison = (filter: string) => {
-    return props.activeFilters.includes(slugifyFilter(filter))
-  }
+  const isActive = (filter: string) => activeFilters.has(slugifyFilter(filter))
+
+  useEffect(() => {
+    const categoryFilters = searchParams.get('category')?.split(',') || []
+    const deliveryTimeFilters = searchParams.get('deliveryTime')?.split(',') || []
+    const priceRangeFilters = searchParams.get('priceRange')?.split(',') || []
+
+    setActiveFilters(new Set([...categoryFilters, ...deliveryTimeFilters, ...priceRangeFilters]))
+  }, [searchParams])
 
   return (
     <div
@@ -69,7 +86,7 @@ export function FilterMenu(props: FilterMenuProps) {
               filterType="category"
               updateFilterSelection={handleFilterUpdate}
               filter={filter.name}
-              active={filterComparison(filter.name)}
+              active={isActive(filter.name)}
             />
           ))}
         </div>
@@ -86,7 +103,7 @@ export function FilterMenu(props: FilterMenuProps) {
               filterType="deliveryTime"
               updateFilterSelection={handleFilterUpdate}
               filter={deliveryTimeRange.label}
-              active={filterComparison(deliveryTimeRange.label)}
+              active={isActive(deliveryTimeRange.label)}
             />
           ))}
           {props.deliveryTimeRanges?.upperFallback && (
@@ -95,7 +112,7 @@ export function FilterMenu(props: FilterMenuProps) {
               filterType="deliveryTime"
               updateFilterSelection={handleFilterUpdate}
               filter={props.deliveryTimeRanges.upperFallback}
-              active={filterComparison(props.deliveryTimeRanges.upperFallback)}
+              active={isActive(props.deliveryTimeRanges.upperFallback)}
             />
           )}
         </div>
@@ -109,7 +126,7 @@ export function FilterMenu(props: FilterMenuProps) {
               filterType="priceRange"
               updateFilterSelection={handleFilterUpdate}
               filter={priceRange}
-              active={filterComparison(priceRange)}
+              active={isActive(priceRange)}
             />
           ))}
         </div>
