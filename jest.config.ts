@@ -9,6 +9,10 @@ const config: Config = {
   // All imported modules in your tests should be mocked automatically
   preset: 'ts-jest',
 
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+
   // automock: false,
 
   // Stop running tests after `n` failures
