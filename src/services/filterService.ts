@@ -1,7 +1,3 @@
-import { useRouter } from 'next/navigation'
-
-type RouterType = ReturnType<typeof useRouter>
-
 /**
  * Updates the filter parameter in the URL without reloading the page,
  * using the native History API for shallow routing.
