@@ -48,7 +48,6 @@ export function FilterMenu(props: FilterMenuProps) {
 
   const handleFilterUpdate = (filterType: string, filterToUpdate: string) => {
     updateFilterInUrl(router, pathname, searchParams, filterType, slugifyFilter(filterToUpdate))
-    router.refresh()
   }
 
   const filterComparison = (filter: string) => {
