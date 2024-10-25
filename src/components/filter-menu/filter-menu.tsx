@@ -1,8 +1,8 @@
 'use client'
 
-import React, { memo } from 'react'
+import React from 'react'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
 import { slugifyFilter } from '@/utils/urlHelpers'
 
@@ -16,41 +16,39 @@ export interface FilterMenuProps {
   activeFilters: string[]
 }
 
-const FilterCard = memo(
-  ({
-    updateFilterSelection,
-    filterType,
-    filter,
-    active,
-  }: {
-    updateFilterSelection: (filterType: string, filter: string) => void
-    filterType: string
-    filter: string
-    active: boolean
-  }) => {
-    return (
-      <button
-        aria-label={'Filter toggle - ' + filter}
-        onClick={() => updateFilterSelection(filterType, filter.toLowerCase())}
-        className={`items-center rounded-lg w-fit hover:scale-95 transition-transform duration-50 ease-in-out relative border-0.6
+const FilterCard = ({
+  updateFilterSelection,
+  filterType,
+  filter,
+  active,
+}: {
+  updateFilterSelection: (filterType: string, filter: string) => void
+  filterType: string
+  filter: string
+  active: boolean
+}) => {
+  return (
+    <button
+      aria-label={'Filter toggle - ' + filter}
+      onClick={() => updateFilterSelection(filterType, filter.toLowerCase())}
+      className={`items-center rounded-lg w-fit hover:scale-95 transition-transform duration-50 ease-in-out relative border-0.6
                     ${active ? 'bg-green border-green text-white' : 'border-stroke bg-white text-black'} p-1.5 px-3`}
-      >
-        <p aria-label={'Filter' + filter} className={`text-body select-none`}>
-          {filter}
-        </p>
-      </button>
-    )
-  },
-  (prevProps, nextProps) => {
-    return JSON.stringify(prevProps) === JSON.stringify(nextProps)
-  },
-)
+    >
+      <p aria-label={'Filter' + filter} className={`text-body select-none`}>
+        {filter}
+      </p>
+    </button>
+  )
+}
 
 export function FilterMenu(props: FilterMenuProps) {
   const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   const handleFilterUpdate = (filterType: string, filterToUpdate: string) => {
-    updateFilterInUrl(router, filterType, slugifyFilter(filterToUpdate))
+    updateFilterInUrl(router, pathname, searchParams, filterType, slugifyFilter(filterToUpdate))
+    router.refresh()
   }
 
   const filterComparison = (filter: string) => {

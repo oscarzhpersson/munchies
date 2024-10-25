@@ -4,7 +4,7 @@ import React from 'react'
 
 import { BadgeCarousel } from '../badge-carousel/badge-carousel'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { updateFilterInUrl } from '@/services/filterService'
 import { slugifyFilter } from '@/utils/urlHelpers'
 
@@ -17,9 +17,11 @@ export interface FilterBadgeCarouselProps {
 
 export function FilterBadgeCarousel(props: FilterBadgeCarouselProps) {
   const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   const handleFilterUpdate = (filterToUpdate: string) => {
-    updateFilterInUrl(router, 'category', slugifyFilter(filterToUpdate))
+    updateFilterInUrl(router, pathname, searchParams, 'category', slugifyFilter(filterToUpdate))
   }
 
   const filterComparison = (filter: string) => {

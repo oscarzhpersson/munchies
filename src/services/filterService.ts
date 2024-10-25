@@ -11,13 +11,14 @@ type RouterType = ReturnType<typeof useRouter>
  */
 export const updateFilterInUrl = (
   router: RouterType,
+  pathname: string,
+  searchParams: URLSearchParams,
   filterType: string,
   filterToUpdate: string,
 ) => {
-  const currentUrl = new URL(window.location.href)
-  const searchParams = new URLSearchParams(currentUrl.search)
+  const params = new URLSearchParams(searchParams.toString())
 
-  let filters = searchParams.get(filterType)?.split(',') || []
+  let filters = params.get(filterType)?.split(',') || []
 
   if (filters.includes(filterToUpdate)) {
     filters = filters.filter((filter) => filter !== filterToUpdate)
@@ -26,10 +27,10 @@ export const updateFilterInUrl = (
   }
 
   if (filters.length > 0) {
-    searchParams.set(filterType, filters.join(','))
+    params.set(filterType, filters.join(','))
   } else {
-    searchParams.delete(filterType)
+    params.delete(filterType)
   }
 
-  router.replace(`${currentUrl.pathname}?${searchParams.toString()}`)
+  router.replace(`${pathname}?${params.toString()}`)
 }
