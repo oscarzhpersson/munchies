@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { FilterBadgeCarousel } from '@/components/filter-menu/filter-badge-carousel'
+import { FilterBadgeCarousel } from '@/components/badge-carousel/filter-badge-carousel'
 import { RestaurantGridWrapper } from '@/components/restaurant-grid/restaurant-grid-wrapper'
 import { FilterMenu } from '@/components/filter-menu/filter-menu'
 import { AppOverlay } from '@/components/app/app-overlay'
