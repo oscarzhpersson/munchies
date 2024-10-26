@@ -29,8 +29,12 @@ Welcome to **Munchies**, a restaurant service frontend application designed to h
 - **Tailwind CSS** for styling
 - **PostgreSQL** as the database
 - **Vercel** for deployment and CD
-- **Github Actions** for continuous integration
-- **Jest** and **React Testing Library** for testing
+- **Docker** for consistent environment setup and application containerization
+- **OrbStack** for fast, lightweight virtualization to enhance local development workflows
+- **Github Actions** for continuous integration and automated workflows
+- **Jest** and **React Testing Library** for unit and integration testing
+- **Prettier** and **ESLint** for automatic code formatting and linting
+- **Storybook** for isolated component development and UI documentation
 
 ## Installation
 
