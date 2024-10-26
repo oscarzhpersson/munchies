@@ -10,7 +10,7 @@ import { Meta, StoryFn } from '@storybook/react'
 import {
   FilterBadgeCarousel,
   FilterBadgeCarouselProps,
-} from '@/components/filter-menu/filter-badge-carousel'
+} from '@/components/badge-carousel/filter-badge-carousel'
 
 export default {
   title: 'Components/FilterBadgeCarousel',
