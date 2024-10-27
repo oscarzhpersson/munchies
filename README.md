@@ -49,7 +49,15 @@ Welcome to **Munchies**, a restaurant service frontend application designed to h
     yarn install
     ```
 
-3. **Set up environment variables:**
+3. **(Local) Set up database container:**
+
+   You may specify container name and database name within this file.
+   
+    ```bash
+    ./start-database.sh
+    ```
+
+5. **Set up environment variables:**
 
     Create a .env file in the root directory with the required environment variables listed below.
 
