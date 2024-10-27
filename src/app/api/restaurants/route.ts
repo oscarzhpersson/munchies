@@ -15,7 +15,9 @@ export async function GET() {
       },
     })
   } catch (error) {
-    console.error('Error fetching restaurant data:', error)
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error occurred fetching restaurant data'
+    console.error('Error fetching restaurant data:', errorMessage)
     return new Response(JSON.stringify({ error: 'Error fetching restaurant data' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },

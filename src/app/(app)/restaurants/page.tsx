@@ -88,8 +88,9 @@ const Page = async () => {
       </div>
     )
   } catch (error) {
-    console.error('Error fetching data:', error)
-    return <div>Sorry, something went wrong.</div>
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+    console.error('Error fetching data:', errorMessage)
+    return <div className="mt-12 text-h1">Sorry, something went wrong.</div>
   }
 }
 

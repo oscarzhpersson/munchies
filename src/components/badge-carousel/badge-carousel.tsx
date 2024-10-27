@@ -33,7 +33,7 @@ export function BadgeCarousel({ title, image, active, updateFilterSelection }: B
           {title}
         </span>
         <Image
-          className="object-cover aspect-square
+          className="object-cover aspect-square pointer-events-none
                     translate-x-[5.55rem] absolute"
           width={80}
           height={80}
