@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 DB_CONTAINER_NAME="munchies-db"
+DB_NAME="munchies"
 
 if ! [ -x "$(command -v docker)" ]; then
   echo "Docker is not installed. Please install docker and try again.\nDocker install guide: https://docs.docker.com/engine/install/"
@@ -22,7 +23,7 @@ if [ "$DB_PASSWORD" = "password" ]; then
   echo "You are using the default database password"
 fi
 
-docker run --name $DB_CONTAINER_NAME -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_DB=next-payload-3 -d -p 5432:5432 docker.io/postgres
+docker run --name $DB_CONTAINER_NAME -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_DB=$DB_NAME -d -p 5432:5432 docker.io/postgres
 
 echo "Database container was successfully created"
 
