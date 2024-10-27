@@ -76,7 +76,7 @@ function RestaurantCard(props: RestaurantCardProps) {
         width={140}
         height={140}
         priority
-        className={`absolute top-[-1.875rem] right-[-1.875rem]
+        className={`absolute top-[-1.875rem] right-[-1.875rem] pointer-events-none
                     object-cover ${props.open ? 'opacity-100' : 'opacity-20'}`}
       />
     </div>
