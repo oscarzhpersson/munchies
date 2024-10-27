@@ -5,9 +5,14 @@ import { fetchMetaDescription } from '@/services/cms/fetchSeoProperties'
 import './globals.css'
 
 const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => {
-  const metaDescription = await fetchMetaDescription().catch((err) => {
-    throw new Error('Error fetching meta description:', err)
-  })
+  let metaDescription
+
+  try {
+    metaDescription = await fetchMetaDescription()
+  } catch (err) {
+    console.error('Error fetching meta description:', err)
+    metaDescription = 'Munchies - Your go-to spot for great food choices!'
+  }
 
   return (
     <html lang="en">
