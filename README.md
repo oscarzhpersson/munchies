@@ -63,7 +63,7 @@ Welcome to **Munchies**, a restaurant service frontend application designed to h
 
     # Payload CMS
     PAYLOAD_SECRET=<Payload CMS Secret Key>
-    POSTGRES_URI=postgresql://<username>:<password>@<host>:<port>/<database>
+    POSTGRES_URL=postgresql://<username>:<password>@<host>:<port>/<database>
 
     # Vercel Blob Storage (if applicable)
     BLOB_READ_WRITE_TOKEN=<Vercel Blob Storage token>
