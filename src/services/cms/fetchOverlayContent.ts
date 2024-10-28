@@ -2,7 +2,6 @@ import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 
-import type { Logo } from '@/interfaces/cms/logo'
 import type { Overlay } from '@/interfaces/cms/overlay'
 
 /**
@@ -14,11 +13,21 @@ import type { Overlay } from '@/interfaces/cms/overlay'
  * @throws {Error} If fetching the overlay content fails or the slug is not found.
  */
 export const fetchOverlayContent = async (): Promise<Overlay> => {
-  const payload = await getPayloadHMR({ config })
+  try {
+    const payload = await getPayloadHMR({ config })
 
-  const overlayContent = await payload.findGlobal({
-    slug: 'overlay-content',
-  })
+    const overlayContent = await payload.findGlobal({
+      slug: 'overlay-content',
+    })
 
-  return overlayContent as Overlay
+    if (!overlayContent) {
+      throw new Error('Overlay content not found.')
+    }
+
+    return overlayContent as Overlay
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error occurred fetching overlay content'
+    throw new Error(errorMessage)
+  }
 }

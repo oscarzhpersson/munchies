@@ -11,6 +11,18 @@ export const DeliveryTimeRanges: GlobalConfig = {
       name: 'ranges',
       type: 'array',
       label: 'Delivery Time Ranges',
+      defaultValue: [
+        {
+          lower: 0,
+          upper: 30,
+          label: '0-30 min',
+        },
+        {
+          lower: 31,
+          upper: 60,
+          label: '30-60 min',
+        },
+      ],
       fields: [
         {
           name: 'lower',

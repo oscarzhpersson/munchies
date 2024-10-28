@@ -40,7 +40,6 @@ export const fetchDeliveryTimeRanges = async () => {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : 'Unknown error occurred fetching delivery time data'
-    console.error('Error fetching delivery time data:', errorMessage)
-    return null
+    throw new Error(errorMessage)
   }
 }

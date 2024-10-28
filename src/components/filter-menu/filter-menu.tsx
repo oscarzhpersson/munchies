@@ -97,15 +97,17 @@ export function FilterMenu(props: FilterMenuProps) {
           className="flex flex-row gap-2 overflow-x-scroll flex-nowrap whitespace-nowrap snap-x
                         snap-proximity hide-scrollbar sm:flex-wrap sm:overflow-visible sm:whitespace-normal"
         >
-          {props.deliveryTimeRanges?.ranges?.map((deliveryTimeRange, index) => (
-            <FilterCard
-              key={index}
-              filterType="deliveryTime"
-              updateFilterSelection={handleFilterUpdate}
-              filter={deliveryTimeRange.label}
-              active={isActive(deliveryTimeRange.label)}
-            />
-          ))}
+          {props?.deliveryTimeRanges
+            ? props.deliveryTimeRanges?.ranges?.map((deliveryTimeRange, index) => (
+                <FilterCard
+                  key={index}
+                  filterType="deliveryTime"
+                  updateFilterSelection={handleFilterUpdate}
+                  filter={deliveryTimeRange.label}
+                  active={isActive(deliveryTimeRange.label)}
+                />
+              ))
+            : null}
           {props.deliveryTimeRanges?.upperFallback && (
             <FilterCard
               key={props.deliveryTimeRanges.ranges?.length}

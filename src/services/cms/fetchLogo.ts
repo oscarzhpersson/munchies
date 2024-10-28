@@ -11,13 +11,17 @@ import type { Logo } from '@/interfaces/cms/logo'
  * @throws Will throw an error if the logo is not found.
  */
 export const fetchLogo = async () => {
-  const payload = await getPayloadHMR({ config })
+  try {
+    const payload = await getPayloadHMR({ config })
 
-  const siteSettings = await payload.findGlobal({
-    slug: 'site-settings',
-  })
+    const siteSettings = await payload.findGlobal({
+      slug: 'site-settings',
+    })
 
-  const logoUrl = (siteSettings.logo as Logo).url
+    const logoUrl = (siteSettings.logo as Logo).url
 
-  return logoUrl
+    return logoUrl
+  } catch (err) {
+    throw new Error((err as Error).message)
+  }
 }

@@ -1,17 +1,17 @@
 import React from 'react'
 
 import { fetchMetaDescription } from '@/services/cms/fetchSeoProperties'
+import { logAndReportError } from '@/services/errors/log-and-report-error'
 
 import './globals.css'
 
 const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => {
-  let metaDescription
+  let metaDescription = 'Munchies - Your go-to spot for great food choices!'
 
   try {
     metaDescription = await fetchMetaDescription()
   } catch (err) {
-    console.error('Error fetching meta description:', err)
-    metaDescription = 'Munchies - Your go-to spot for great food choices!'
+    logAndReportError(`Error fetching meta description: ${err}`)
   }
 
   return (
