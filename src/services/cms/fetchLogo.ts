@@ -18,6 +18,14 @@ export const fetchLogo = async () => {
       slug: 'site-settings',
     })
 
+    if (!siteSettings) {
+      throw new Error('No site settings found')
+    }
+
+    if (!siteSettings.logo) {
+      throw new Error('No logo found in site settings')
+    }
+
     const logoUrl = (siteSettings.logo as Logo).url
 
     return logoUrl
