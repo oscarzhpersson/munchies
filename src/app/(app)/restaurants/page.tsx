@@ -42,15 +42,46 @@ const Page = async () => {
     let logoUrl: string = ''
     let deliveryTimeRanges: DeliveryTime = defaultDeliveryTimeRanges
     let overlayContent: Overlay | null = null
+
     try {
-      ;[page, logoUrl, deliveryTimeRanges, overlayContent] = await Promise.all([
-        fetchPageData('restaurants'),
-        fetchLogo(),
-        fetchDeliveryTimeRanges(),
-        fetchOverlayContent(),
-      ])
+      const [pageResult, logoUrlResult, deliveryTimeRangesResult, overlayContentResult] =
+        (await Promise.allSettled([
+          fetchPageData('restaurants'),
+          fetchLogo(),
+          fetchDeliveryTimeRanges(),
+          fetchOverlayContent(),
+        ])) as [
+          PromiseSettledResult<Page>,
+          PromiseSettledResult<string>,
+          PromiseSettledResult<DeliveryTime>,
+          PromiseSettledResult<Overlay>,
+        ]
+
+      if (pageResult.status === 'fulfilled') {
+        page = pageResult.value
+      } else {
+        logAndReportError(`Error fetching page data: ${pageResult.reason}`)
+      }
+
+      if (logoUrlResult.status === 'fulfilled') {
+        logoUrl = logoUrlResult.value
+      } else {
+        logAndReportError(`Error fetching logo URL: ${logoUrlResult.reason}`)
+      }
+
+      if (deliveryTimeRangesResult.status === 'fulfilled') {
+        deliveryTimeRanges = deliveryTimeRangesResult.value
+      } else {
+        logAndReportError(`Error fetching delivery time ranges: ${deliveryTimeRangesResult.reason}`)
+      }
+
+      if (overlayContentResult.status === 'fulfilled') {
+        overlayContent = overlayContentResult.value
+      } else {
+        logAndReportError(`Error fetching overlay content: ${overlayContentResult.reason}`)
+      }
     } catch (err) {
-      logAndReportError(`Error fetching data: ${err}`)
+      logAndReportError(`Unexpected error: ${err}`)
     }
 
     const { restaurantWithDetails: restaurants, filters } = restaurantData
