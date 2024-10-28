@@ -67,19 +67,25 @@ const Page = async () => {
             <Image src={logoUrl} alt="logo" width={275} height={40} className="w-full h-full" />
           </Link>
           <div className="col-span-12 sm:col-span-2 lg:col-span-2 mb-4 mx-8 sm:mx-0 sm:mb-0">
-            <FilterMenu
-              filters={filters}
-              deliveryTimeRanges={deliveryTimeRanges}
-              priceRanges={priceRanges}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <FilterMenu
+                filters={filters}
+                deliveryTimeRanges={deliveryTimeRanges}
+                priceRanges={priceRanges}
+              />
+            </Suspense>
           </div>
           <main className="col-span-12 sm:col-span-10 lg:col-span-10 ml-8 sm:ml-4">
-            <FilterBadgeCarousel filters={filters} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <FilterBadgeCarousel filters={filters} />
+            </Suspense>
             <div className="flex flex-col justify-between mr-8 sm:mr-0">
               <h1 className="text-h1 sm:text-display mt-6 mb-4 sm:mt-11 sm:mb-9">
                 {page.title || 'title'}
               </h1>
-              <RestaurantGridWrapper restaurants={enrichedRestaurants} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <RestaurantGridWrapper restaurants={enrichedRestaurants} />
+              </Suspense>
             </div>
           </main>
         </header>
